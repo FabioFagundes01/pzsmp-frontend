@@ -1,0 +1,22 @@
+<div class="main-container">
+  <aside class="sidebar">
+    <div class="sidebar-header">
+      <h3>Sampaiollo LTDA</h3>
+    </div>
+    <nav class="sidebar-nav">
+      <a routerLink="/app/pedidos" routerLinkActive="active">Pedidos</a>
+      <a routerLink="/app/cardapio" routerLinkActive="active">Cardápio</a>
+      <a routerLink="/app/entregas" routerLinkActive="active">Entrega</a>
+      <a routerLink="/app/funcionarios" routerLinkActive="active">Gerenciar Funcionários</a>
+      <a routerLink="/app/mesas" routerLinkActive="active">Gerenciar Mesas</a>
+      <a routerLink="/app/balcao" routerLinkActive="active">Balcão</a>
+    </nav>
+    <div class="sidebar-footer">
+      <a (click)="logout()">Sair</a>
+    </div>
+  </aside>
+
+  <main class="content-area">
+    <router-outlet></router-outlet>
+  </main>
+</div>

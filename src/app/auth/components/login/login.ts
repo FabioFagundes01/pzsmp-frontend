@@ -8,33 +8,45 @@ import { AuthService } from '../../../core/services/auth';
   selector: 'app-login',
   templateUrl: './login.html',
   styleUrls: ['./login.css'],
-  standalone: true, // Indica que é um componente standalone
-  imports: [FormsModule, CommonModule] // Importa módulos necessários
+  standalone: true,
+  imports: [
+    FormsModule,    // Necessário para usar [(ngModel)] no formulário
+    CommonModule    // Necessário para usar diretivas como *ngIf
+  ]
 })
 export class LoginComponent {
-  // Objeto para armazenar os dados do formulário
+
+  // Objeto para armazenar os dados do formulário (login e senha)
   credentials = {
     login: '',
     senha: ''
   };
+
+  // Variável para armazenar a mensagem de erro, caso o login falhe
   errorMessage: string | null = null;
 
+  // Injeta o serviço de autenticação e o serviço de roteamento no construtor
   constructor(private authService: AuthService, private router: Router) {}
 
   /**
-   * Chamado quando o formulário é enviado.
+   * Método chamado quando o formulário é enviado.
    */
   onLogin(): void {
+    // Limpa qualquer mensagem de erro anterior
     this.errorMessage = null;
+
+    // Chama o método de login no serviço de autenticação
     this.authService.login(this.credentials).subscribe({
+      // Bloco 'next' é executado em caso de sucesso
       next: (response) => {
         console.log('Login bem-sucedido!', response);
-        // Redireciona para uma página principal após o login (ex: /dashboard)
-        // Vamos criar essa rota depois.
-        // this.router.navigate(['/dashboard']);
+        // Redireciona o usuário para a página principal da aplicação
+        this.router.navigate(['/app/pedidos']);
       },
+      // Bloco 'error' é executado em caso de falha
       error: (err) => {
         console.error('Falha no login', err);
+        // Define uma mensagem de erro para ser exibida na tela
         this.errorMessage = 'Login ou senha inválidos. Tente novamente.';
       }
     });
