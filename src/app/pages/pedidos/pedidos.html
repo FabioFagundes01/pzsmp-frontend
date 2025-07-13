@@ -1,1 +1,33 @@
-<p>pedidos works!</p>
+<div class="pedidos-header">
+  <h1>Pedidos em Andamento</h1>
+  <p>Ordem de chegada</p>
+</div>
+
+<div class="pedidos-grid">
+  <div *ngFor="let pedido of pedidos" class="pedido-card">
+    <div class="card-header">
+      <h3>Pedido Nº {{ pedido.idPedido }}</h3>
+      <span>{{ pedido.status }}</span>
+    </div>
+    <div class="card-body">
+      <ul class="itens-lista">
+        <li *ngFor="let item of pedido.itens">
+          <span>{{ item.quantidade }}x {{ item.nomeProduto }}</span>
+          <span>R$ {{ item.precoUnitario.toFixed(2) }}</span>
+        </li>
+      </ul>
+    </div>
+    <div class="card-footer">
+      <span>Cliente: {{ pedido.cliente.nome }}</span>
+      <strong>Total: R$ {{ pedido.total.toFixed(2) }}</strong>
+    </div>
+    <div class="card-actions">
+        <button *ngIf="pedido.status === 'PREPARANDO'" (click)="mudarStatus(pedido.idPedido, 'PRONTO')">
+            Marcar como Pronto
+        </button>
+        <button *ngIf="pedido.status === 'PRONTO'" (click)="mudarStatus(pedido.idPedido, 'ENTREGUE')">
+            Finalizar Entrega
+        </button>
+    </div>
+  </div>
+</div>

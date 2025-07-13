@@ -1,18 +1,22 @@
 <div class="main-container">
   <aside class="sidebar">
     <div class="sidebar-header">
-      <h3>Sampaiollo LTDA</h3>
+      <h3><img src="assets/images/icone2.png" alt="Logo" class="logo-icon" />
+        Sampaiollo LTDA</h3>
     </div>
     <nav class="sidebar-nav">
-      <a routerLink="/app/pedidos" routerLinkActive="active">Pedidos</a>
-      <a routerLink="/app/cardapio" routerLinkActive="active">Cardápio</a>
-      <a routerLink="/app/entregas" routerLinkActive="active">Entrega</a>
-      <a routerLink="/app/funcionarios" routerLinkActive="active">Gerenciar Funcionários</a>
-      <a routerLink="/app/mesas" routerLinkActive="active">Gerenciar Mesas</a>
-      <a routerLink="/app/balcao" routerLinkActive="active">Balcão</a>
+      <a routerLink="/app/pedidos" routerLinkActive="active"><i class="fas fa-box"></i> Pedidos</a>
+      <a routerLink="/app/cardapio" routerLinkActive="active"><i class="fas fa-utensils"></i> Cardápio</a>
+      <a routerLink="/app/entregas" routerLinkActive="active"><i class="fas fa-truck"></i> Entrega</a>
+      <a routerLink="/app/funcionarios" routerLinkActive="active"><i class="fas fa-users-cog"></i> Ger. Funcionários</a>
+      <a routerLink="/app/mesas" routerLinkActive="active"><i class="fas fa-chair"></i> Ger. Mesas</a>
+      <a routerLink="/app/balcao" routerLinkActive="active"><i class="fas fa-cash-register"></i> Balcão</a>
+      <a routerLink="/app/cadastro-produto" routerLinkActive="active">
+        <i>[ícone]</i> Cadastro de Produto
+    </a>
     </nav>
     <div class="sidebar-footer">
-      <a (click)="logout()">Sair</a>
+      <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
     </div>
   </aside>
 

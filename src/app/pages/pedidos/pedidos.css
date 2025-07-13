@@ -1,0 +1,100 @@
+.pedidos-header {
+  margin-bottom: 20px;
+}
+
+.pedidos-header h1 {
+  margin: 0;
+}
+
+.pedidos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+}
+
+.pedido-card {
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+.card-header, .card-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.card-footer {
+  border-bottom: none;
+  border-top: 1px solid #eee;
+  padding-top: 10px;
+  margin-top: auto;
+  font-size: 0.9rem;
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.card-header span {
+  background-color: #e0e0e0;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.itens-lista {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+
+.itens-lista li {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+  font-size: 0.95rem;
+}
+
+/* No final do arquivo pedidos.css */
+.card-actions {
+  margin-top: 15px;
+  padding-top: 15px;
+  border-top: 1px solid #eee;
+  display: flex;
+  gap: 10px;
+}
+
+.card-actions button {
+  flex-grow: 1;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.card-actions button:hover {
+  opacity: 0.9;
+}
+
+/* Estilo específico para o botão de "pronto" */
+.card-actions button:nth-of-type(1) {
+  background-color: #28a745; /* Verde */
+  color: white;
+}
+
+/* Estilo específico para o botão de "finalizar" */
+.card-actions button:nth-of-type(2) {
+  background-color: #007bff; /* Azul */
+  color: white;
+}

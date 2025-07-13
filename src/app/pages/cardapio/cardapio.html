@@ -1,1 +1,33 @@
-<p>cardapio works!</p>
+<div class="cardapio-container">
+  <h1>Cardápio</h1>
+
+  <div class="filtros-container">
+    <button *ngFor="let tipo of tiposDeProduto"
+            class="filtro-btn"
+            [class.active]="filtroAtual === tipo"
+            (click)="filtrarProdutos(tipo)">
+      {{ formatarNomeFiltro(tipo) }}
+    </button>
+  </div>
+
+  <div class="cardapio-grid">
+    <div *ngFor="let produto of produtosFiltrados" class="produto-card">
+      
+      <ng-container *ngIf="produto.imagemUrl; else placeholder">
+        <img [src]="'http://localhost:8081/product-images/' + produto.imagemUrl" alt="{{ produto.nome }}">
+      </ng-container>
+      <ng-template #placeholder>
+        <img src= >
+      </ng-template>
+
+      <div class="produto-info">
+        <h3>{{ produto.nome }}</h3>
+        <p>R$ {{ produto.preco.toFixed(2) }}</p>
+      </div>
+    </div>
+  </div>
+
+  <div *ngIf="produtosFiltrados.length === 0" class="sem-produtos">
+    <p>Não há produtos nesta categoria no momento.</p>
+  </div>
+</div>

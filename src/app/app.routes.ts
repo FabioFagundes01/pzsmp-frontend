@@ -7,6 +7,7 @@ import { Entregas } from './pages/entregas/entregas';
 import { Funcionarios } from './pages/funcionarios/funcionarios';
 import { Mesas } from './pages/mesas/mesas';
 import { Balcao } from './pages/balcao/balcao';
+import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto';
 
 export const routes: Routes = [
   // Rotas de autenticação (públicas)
@@ -27,6 +28,7 @@ export const routes: Routes = [
       { path: 'funcionarios', component: Funcionarios },
       { path: 'mesas', component: Mesas },
       { path: 'balcao', component: Balcao },
+      { path: 'cadastro-produto', component: CadastroProdutoComponent },
       // Rota padrão dentro da área logada
       { path: '', redirectTo: 'pedidos', pathMatch: 'full' }
     ]
