@@ -25,4 +25,15 @@ export class ProdutoService {
     // Não definimos o 'Content-Type'. O navegador faz isso automaticamente para FormData.
     return this.http.post<any>(this.apiUrl, formData);
 }
+
+atualizarProduto(id_produto: number, formData: FormData): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id_produto}`, formData);
+}
+
+/**
+ * Envia uma requisição para deletar um produto
+ */
+excluirProduto(id: number): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/${id}`);
+}
 }

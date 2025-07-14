@@ -1,6 +1,7 @@
 <div class="cardapio-container">
   <h1>Cardápio</h1>
 
+  <!-- Menu de Filtros Horizontal -->
   <div class="filtros-container">
     <button *ngFor="let tipo of tiposDeProduto"
             class="filtro-btn"
@@ -10,24 +11,75 @@
     </button>
   </div>
 
+  <!-- Grade de Produtos -->
   <div class="cardapio-grid">
     <div *ngFor="let produto of produtosFiltrados" class="produto-card">
       
+      <!-- Lógica para exibir a imagem do produto ou uma imagem padrão -->
       <ng-container *ngIf="produto.imagemUrl; else placeholder">
+        <!-- Se o produto tiver uma imagemUrl, usa ela -->
         <img [src]="'http://localhost:8081/product-images/' + produto.imagemUrl" alt="{{ produto.nome }}">
       </ng-container>
       <ng-template #placeholder>
-        <img src= >
+        <!-- Senão, usa a imagem padrão -->
+        <img src="assets/images/placeholder-pizza.png" alt="{{ produto.nome }}">
       </ng-template>
 
       <div class="produto-info">
         <h3>{{ produto.nome }}</h3>
         <p>R$ {{ produto.preco.toFixed(2) }}</p>
       </div>
+
+      <!-- Botões de Ação para Editar e Excluir -->
+      <div class="card-actions">
+        <button class="btn-editar" (click)="abrirModalEdicao(produto)">Editar</button>
+        <button class="btn-excluir" (click)="excluirProduto(produto.id_produto)">Excluir</button>
+      </div>
     </div>
   </div>
 
+  <!-- Mensagem caso não haja produtos no filtro selecionado -->
   <div *ngIf="produtosFiltrados.length === 0" class="sem-produtos">
     <p>Não há produtos nesta categoria no momento.</p>
   </div>
+</div>
+
+
+<!-- ================================================== -->
+<!-- MODAL DE EDIÇÃO (aparece quando produtoEmEdicao não é nulo) -->
+<!-- ================================================== -->
+<div class="modal-overlay" [class.visivel]="produtoEmEdicao">
+  
+  <div *ngIf="produtoEmEdicao" class="modal-content">
+    <h2>Editar Produto</h2>
+    <form (ngSubmit)="salvarEdicao()">
+      
+      <div class="form-group">
+        <label for="edit-nome">Nome do Produto</label>
+        <input id="edit-nome" type="text" [(ngModel)]="produtoEmEdicao.nome" name="edit-nome" required>
+      </div>
+
+      <div class="form-group">
+        <label for="edit-preco">Preço</label>
+        <input id="edit-preco" type="number" [(ngModel)]="produtoEmEdicao.preco" name="edit-preco" required>
+      </div>
+
+      <div class="form-group">
+        <label for="edit-tipo">Tipo de Produto</label>
+        <select id="edit-tipo" [(ngModel)]="produtoEmEdicao.tipo" name="edit-tipo" required>
+          <option *ngFor="let tipo of tiposDeProduto" [value]="tipo">{{ formatarNomeFiltro(tipo) }}</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="edit-imagem">Trocar Imagem (opcional)</label>
+        <input type="file" id="edit-imagem" (change)="onFileSelected($event)">
+      </div>
+
+      <div class="modal-actions">
+        <button type="button" class="btn-cancelar" (click)="fecharModalEdicao()">Cancelar</button>
+        <button type="submit" class="btn-salvar">Salvar Alterações</button>
+      </div>
+    </form>
+  </div>
+
 </div>

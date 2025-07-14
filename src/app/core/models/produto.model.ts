@@ -1,5 +1,5 @@
 export interface Produto {
-  id: number;
+  id_produto: number;
   nome: string;
   tipo: string;
   preco: number;
