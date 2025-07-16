@@ -59,4 +59,18 @@ export class Pedidos implements OnInit {
         }
     });
   }
+  fecharPedido(pedidoId: number): void {
+    this.pedidoService.fecharPedido(pedidoId).subscribe({
+        next: (pedidoAtualizado: Pedido) => {
+            console.log(`Pedido ${pedidoId} fechado com sucesso.`);
+            // Para garantir que a tela de mesas também atualize,
+            // o ideal é recarregar a lista de pedidos do zero.
+            this.carregarPedidos();
+        },
+        error: (err: any) => {
+            alert('Erro ao fechar o pedido.');
+            console.error(err);
+        }
+    });
+}
 }

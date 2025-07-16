@@ -98,3 +98,51 @@
   background-color: #007bff; /* Azul */
   color: white;
 }
+
+/* ... (CSS anterior) ... */
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #eee;
+  gap: 10px; /* Adiciona espaço entre os elementos */
+}
+
+.card-header h3 {
+  margin: 0;
+  font-size: 1.1rem;
+  flex-grow: 1; /* Faz o título ocupar o espaço disponível */
+}
+
+.mesa-info {
+  background-color: #e2e3e5;
+  color: #383d41;
+  padding: 4px 10px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  white-space: nowrap; /* Impede que o texto quebre a linha */
+}
+
+.status-info {
+  background-color: #e0e0e0;
+  padding: 4px 8px;
+  border-radius: 12px;
+  font-size: 0.8rem;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
+.btn-fechar-pedido {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #17a2b8; /* Cor Ciano/Azul claro */
+  color: white;
+}

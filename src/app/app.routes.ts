@@ -8,6 +8,7 @@ import { Funcionarios } from './pages/funcionarios/funcionarios';
 import { Mesas } from './pages/mesas/mesas';
 import { Balcao } from './pages/balcao/balcao';
 import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto';
+import { CadastroClienteComponent } from './pages/cadastro-cliente/cadastro-cliente';
 
 export const routes: Routes = [
   // Rotas de autenticação (públicas)
@@ -16,11 +17,11 @@ export const routes: Routes = [
     loadChildren: () => import('./auth/auth-module').then(m => m.AuthModule)
   },
 
-  // Rotas da aplicação principal (protegidas)
+  // Rotas da aplicação principal (protegidas pelo authGuard)
   {
     path: 'app',
     component: MainLayoutComponent,
-    canActivate: [authGuard], // <-- Nosso guarda protegendo todo este grupo de rotas
+    canActivate: [authGuard], // Nosso guarda protege todo este grupo de rotas
     children: [
       { path: 'pedidos', component: Pedidos },
       { path: 'cardapio', component: Cardapio },
@@ -29,13 +30,16 @@ export const routes: Routes = [
       { path: 'mesas', component: Mesas },
       { path: 'balcao', component: Balcao },
       { path: 'cadastro-produto', component: CadastroProdutoComponent },
-      // Rota padrão dentro da área logada
+      { path: 'cadastro-cliente', component: CadastroClienteComponent },
+      
+      // Rota padrão dentro da área logada, redireciona para a tela de pedidos
       { path: '', redirectTo: 'pedidos', pathMatch: 'full' }
     ]
   },
 
-  // Rota padrão geral, redireciona para o login
+  // Rota padrão geral, redireciona para a página de login se não houver outra correspondência
   { path: '', redirectTo: 'auth/login', pathMatch: 'full' },
-  // Rota "coringa" para páginas não encontradas
+  
+  // Rota "coringa" para qualquer URL não encontrada, redireciona para o login
   { path: '**', redirectTo: 'auth/login' }
 ];

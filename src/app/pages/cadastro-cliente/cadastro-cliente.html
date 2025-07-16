@@ -1,0 +1,145 @@
+<div class="gerenciar-clientes">
+  
+  <!-- ================================================== -->
+  <!-- SEÇÃO DO FORMULÁRIO DE CADASTRO -->
+  <!-- ================================================== -->
+  <div class="form-section">
+    <h2>Cadastrar Novo Cliente</h2>
+    <form (ngSubmit)="cadastrarCliente()">
+      
+      <h4>Dados Pessoais</h4>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="nome">Nome Completo</label>
+          <input id="nome" type="text" [(ngModel)]="novoCliente.nome" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="email">E-mail</label>
+          <input id="email" type="email" [(ngModel)]="novoCliente.email" name="email" required>
+        </div>
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input id="telefone" type="text" [(ngModel)]="novoCliente.telefone" name="telefone">
+        </div>
+      </div>
+
+      <hr>
+      <h4>Endereço Principal</h4>
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="cep">CEP</label>
+          <input id="cep" type="text" [(ngModel)]="novoCliente.cep" name="cep">
+        </div>
+        <div class="form-group">
+          <label for="rua">Rua</label>
+          <input id="rua" type="text" [(ngModel)]="novoCliente.rua" name="rua">
+        </div>
+        <div class="form-group">
+          <label for="numero">Número</label>
+          <input id="numero" type="number" [(ngModel)]="novoCliente.numero" name="numero">
+        </div>
+        <div class="form-group">
+          <label for="bairro">Bairro</label>
+          <input id="bairro" type="text" [(ngModel)]="novoCliente.bairro" name="bairro">
+        </div>
+        <div class="form-group">
+          <label for="cidade">Cidade</label>
+          <input id="cidade" type="text" [(ngModel)]="novoCliente.cidade" name="cidade">
+        </div>
+      </div>
+
+      <button type="submit" class="submit-btn">Cadastrar Cliente</button>
+    </form>
+  </div>
+
+  <!-- ================================================== -->
+  <!-- SEÇÃO DA TABELA DE LISTAGEM -->
+  <!-- ================================================== -->
+  <div class="list-section">
+    <h2>Clientes Cadastrados</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th>Endereço Principal</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of listaClientes">
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.telefone }}</td>
+          <td>
+            <span *ngIf="cliente.endereco">
+              {{ cliente.endereco.rua }}, {{ cliente.endereco.numero }}
+            </span>
+          </td>
+          <td>
+            <button class="btn-acao btn-editar" (click)="abrirModalEdicao(cliente)">Editar</button>
+            <button class="btn-acao btn-excluir" (click)="excluirCliente(cliente.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- ================================================== -->
+<!-- MODAL DE EDIÇÃO DE CLIENTE -->
+<!-- ================================================== -->
+<div class="modal-overlay" *ngIf="clienteEmEdicao">
+  <div class="modal-content">
+    <h2>Editar Cliente</h2>
+    <form (ngSubmit)="salvarEdicao()">
+      <!-- O formulário de edição é idêntico ao de cadastro -->
+      <h4>Dados Pessoais</h4>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nome Completo</label>
+          <input type="text" [(ngModel)]="clienteEmEdicao.nome" name="edit-nome" required>
+        </div>
+        <div class="form-group">
+          <label>E-mail</label>
+          <input type="email" [(ngModel)]="clienteEmEdicao.email" name="edit-email" required>
+        </div>
+        <div class="form-group">
+          <label>Telefone</label>
+          <input type="text" [(ngModel)]="clienteEmEdicao.telefone" name="edit-telefone">
+        </div>
+      </div>
+      <hr>
+      <h4>Endereço Principal</h4>
+      <div class="form-grid">
+        <div class="form-group">
+          <label>CEP</label>
+          <input type="text" [(ngModel)]="clienteEmEdicao.cep" name="edit-cep">
+        </div>
+        <div class="form-group">
+          <label>Rua</label>
+          <input type="text" [(ngModel)]="clienteEmEdicao.rua" name="edit-rua">
+        </div>
+        <div class="form-group">
+          <label>Número</label>
+          <input type="number" [(ngModel)]="clienteEmEdicao.numero" name="edit-numero">
+        </div>
+        <div class="form-group">
+          <label>Bairro</label>
+          <input type="text" [(ngModel)]="clienteEmEdicao.bairro" name="edit-bairro">
+        </div>
+        <div class="form-group">
+          <label>Cidade</label>
+          <input type="text" [(ngModel)]="clienteEmEdicao.cidade" name="edit-cidade">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-cancelar" (click)="fecharModalEdicao()">Cancelar</button>
+        <button type="submit" class="btn-salvar">Salvar Alterações</button>
+      </div>
+    </form>
+  </div>
+</div>

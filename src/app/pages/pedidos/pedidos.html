@@ -4,11 +4,20 @@
 </div>
 
 <div class="pedidos-grid">
+  <!-- O *ngFor percorre a lista de pedidos e cria um cartão para cada um -->
   <div *ngFor="let pedido of pedidos" class="pedido-card">
+    
+    <!-- CABEÇALHO DO CARTÃO -->
     <div class="card-header">
       <h3>Pedido Nº {{ pedido.idPedido }}</h3>
-      <span>{{ pedido.status }}</span>
+      <!-- Mostra o número da mesa se o pedido tiver um -->
+      <span class="mesa-info" *ngIf="pedido.numeroMesa">
+        Mesa {{ pedido.numeroMesa }}
+      </span>
+      <span class="status-info">{{ pedido.status }}</span>
     </div>
+
+    <!-- CORPO DO CARTÃO (LISTA DE ITENS) -->
     <div class="card-body">
       <ul class="itens-lista">
         <li *ngFor="let item of pedido.itens">
@@ -17,17 +26,29 @@
         </li>
       </ul>
     </div>
+
+    <!-- RODAPÉ DO CARTÃO -->
     <div class="card-footer">
-      <span>Cliente: {{ pedido.cliente.nome }}</span>
+      <!-- Mostra o nome do cliente se o pedido tiver um -->
+      <span>Cliente: {{ pedido.cliente?.nome || 'Não identificado' }}</span>
       <strong>Total: R$ {{ pedido.total.toFixed(2) }}</strong>
     </div>
+
+    <!-- BOTÕES DE AÇÃO -->
     <div class="card-actions">
-        <button *ngIf="pedido.status === 'PREPARANDO'" (click)="mudarStatus(pedido.idPedido, 'PRONTO')">
-            Marcar como Pronto
-        </button>
-        <button *ngIf="pedido.status === 'PRONTO'" (click)="mudarStatus(pedido.idPedido, 'ENTREGUE')">
-            Finalizar Entrega
-        </button>
+      <button *ngIf="pedido.status === 'PREPARANDO'" (click)="mudarStatus(pedido.idPedido, 'PRONTO')">
+          Marcar como Pronto
+      </button>
+      <div *ngIf="pedido.status === 'PRONTO'">
+    <!-- Se o pedido TEM um número de mesa, mostra "Fechar Pedido" -->
+    <button *ngIf="pedido.numeroMesa" class="btn-fechar-pedido" (click)="fecharPedido(pedido.idPedido)">
+        Fechar Pedido
+    </button>
+    <!-- Se o pedido NÃO TEM um número de mesa (é delivery/balcão), mostra "Finalizar Entrega" -->
+    <button *ngIf="!pedido.numeroMesa" (click)="mudarStatus(pedido.idPedido, 'ENTREGUE')">
+        Finalizar Entrega
+    </button>
+  </div>
     </div>
   </div>
 </div>

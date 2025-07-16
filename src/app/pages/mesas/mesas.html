@@ -33,14 +33,12 @@
       <div *ngIf="modalView === 'novoPedido'" class="novo-pedido-view">
         <div class="cardapio-coluna">
           <h4>Cardápio</h4>
-          <!-- Filtros do Cardápio -->
           <div class="filtros-cardapio">
             <button *ngFor="let tipo of tiposDeProduto" (click)="filtrarCardapio(tipo)"
                     [class.active]="filtroCardapioAtual === tipo">
-              {{ tipo.replace('_', ' ') }}
+              {{ formatarNomeFiltro(tipo) }}
             </button>
           </div>
-          <!-- Lista de Produtos Filtrados -->
           <div class="lista-produtos-cardapio">
             <div class="item-cardapio" *ngFor="let produto of cardapioFiltrado" (click)="adicionarAoPedido(produto)">
               {{ produto.nome }} - R$ {{ produto.preco.toFixed(2) }}
@@ -85,7 +83,21 @@
 
       <!-- View: RESERVA -->
       <div *ngIf="modalView === 'reserva'">
-        <!-- (O formulário de reserva continua o mesmo) -->
+        <form (ngSubmit)="reservarMesa()">
+          <div class="form-group">
+            <label for="nomeReserva">Nome para a Reserva</label>
+            <input id="nomeReserva" type="text" [(ngModel)]="novaReserva.nomeReserva" name="nomeReserva" required>
+          </div>
+          <div class="form-group">
+            <label for="numPessoas">Número de Pessoas</label>
+            <input id="numPessoas" type="number" [(ngModel)]="novaReserva.numPessoas" name="numPessoas" required>
+          </div>
+          <div class="form-group">
+            <label for="observacoes">Observações (opcional)</label>
+            <textarea id="observacoes" [(ngModel)]="novaReserva.observacoes" name="observacoes" rows="3"></textarea>
+          </div>
+          <button type="submit" class="btn-salvar">Confirmar Reserva</button>
+        </form>
       </div>
     </div>
   </div>

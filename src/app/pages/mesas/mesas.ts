@@ -22,7 +22,7 @@ export class Mesas implements OnInit {
   // Variáveis do Modal
   mesaSelecionada: Mesa | null = null;
   modalView: 'novoPedido' | 'pedidos' | 'reserva' = 'novoPedido';
-  
+
   // Dados para os diferentes views do modal
   pedidosDaMesa: Pedido[] = [];
   cardapioCompleto: Produto[] = [];
@@ -50,21 +50,24 @@ export class Mesas implements OnInit {
   }
 
   carregarMesas(): void {
-    this.mesaService.getMesas().subscribe(data => this.listaMesas = data);
+    this.mesaService.getMesas().subscribe(data => {
+      this.listaMesas = data.sort((a, b) => a.numero - b.numero);
+    });
   }
 
   carregarCardapio(): void {
     this.produtoService.getProdutos().subscribe(data => {
       this.cardapioCompleto = data;
-      this.filtrarCardapio(this.filtroCardapioAtual); // Aplica o filtro padrão
+      this.filtrarCardapio(this.filtroCardapioAtual);
     });
   }
 
   abrirModal(mesa: Mesa): void {
     this.mesaSelecionada = mesa;
-    this.modalView = 'novoPedido'; // Padrão é sempre abrir em "Novo Pedido"
+    // O padrão é sempre abrir na tela de "Novo Pedido" para consistência.
+    this.modalView = 'novoPedido';
     
-    // Sempre busca os pedidos ativos para saber se a mesa está realmente ocupada
+    // Busca os pedidos ativos em segundo plano, para o caso de o usuário navegar para essa aba.
     this.pedidoService.getPedidosPorMesa(mesa.numero).subscribe(pedidos => {
       this.pedidosDaMesa = pedidos;
     });
@@ -109,9 +112,8 @@ export class Mesas implements OnInit {
       quantidade: item.quantidade
     }));
 
-    // Se a mesa já tem pedidos, adicionamos itens ao primeiro pedido ativo
     if (this.pedidosDaMesa.length > 0) {
-      const pedidoId = this.pedidosDaMesa[0].idPedido; // Pega o ID do primeiro pedido ativo
+      const pedidoId = this.pedidosDaMesa[0].idPedido;
       this.pedidoService.adicionarItensAoPedido(pedidoId, itensParaApi).subscribe({
         next: () => {
           alert('Itens adicionados com sucesso!');
@@ -123,7 +125,7 @@ export class Mesas implements OnInit {
           console.error(err);
         }
       });
-    } else { // Se a mesa não tem pedidos, criamos um novo
+    } else {
       const pedidoParaApi = {
         idMesa: this.mesaSelecionada!.numero,
         idCliente: null,
@@ -145,6 +147,33 @@ export class Mesas implements OnInit {
 
   // --- Lógica da Reserva ---
   reservarMesa(): void {
-    // ... (a lógica de reserva continua a mesma)
+    if (!this.mesaSelecionada || !this.novaReserva.nomeReserva || !this.novaReserva.numPessoas) {
+      alert('Por favor, preencha o nome para a reserva e o número de pessoas.');
+      return;
+    }
+
+    const dadosReserva = {
+      idMesa: this.mesaSelecionada.numero,
+      nomeReserva: this.novaReserva.nomeReserva,
+      numPessoas: this.novaReserva.numPessoas,
+      observacoes: this.novaReserva.observacoes,
+      dataReserva: new Date().toISOString()
+    };
+
+    this.reservaService.fazerReserva(dadosReserva).subscribe({
+      next: () => {
+        alert(`Mesa ${this.mesaSelecionada?.numero} reservada com sucesso para "${dadosReserva.nomeReserva}"!`);
+        this.carregarMesas();
+        this.fecharModal();
+      },
+      error: (err) => {
+        alert('Erro ao fazer a reserva.');
+        console.error(err);
+      }
+    });
+  }
+  
+  formatarNomeFiltro(tipo: string): string {
+    return tipo.replace(/_/g, ' ').replace(/\w\S*/g, (txt) => txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase());
   }
 }

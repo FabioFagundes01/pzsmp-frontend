@@ -1,4 +1,3 @@
-// Em src/app/core/models/pedido.model.ts
 export interface ItemPedido {
   nomeProduto: string;
   quantidade: number;
@@ -12,9 +11,10 @@ export interface Cliente {
 
 export interface Pedido {
   idPedido: number;
-  data: string; // ou Date
+  data: string;
   status: string;
   total: number;
   cliente: Cliente;
   itens: ItemPedido[];
+  numeroMesa?: number; // <<< CAMPO ADICIONADO AQUI
 }

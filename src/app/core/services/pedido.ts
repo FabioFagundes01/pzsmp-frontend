@@ -53,4 +53,9 @@ export class PedidoService {
     const requestBody = { itens: itens };
     return this.http.post<Pedido>(`${this.apiUrl}/${pedidoId}/itens`, requestBody);
   }
+
+  fecharPedido(pedidoId: number): Observable<Pedido> {
+  // O corpo da requisição é vazio, pois a lógica está toda no backend
+  return this.http.put<Pedido>(`${this.apiUrl}/${pedidoId}/fechar`, {});
+}
 }
