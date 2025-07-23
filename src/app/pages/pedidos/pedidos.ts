@@ -12,65 +12,51 @@ import { Pedido } from '../../core/models/pedido.model';
 })
 export class Pedidos implements OnInit {
 
-  // Array para armazenar a lista de pedidos que vem da API
   pedidos: Pedido[] = [];
 
-  // Injeta o PedidoService no construtor para que possamos usá-lo
   constructor(private pedidoService: PedidoService) {}
 
-  // Este método é chamado automaticamente quando o componente é carregado
   ngOnInit(): void {
     this.carregarPedidos();
   }
 
-  /**
-   * Busca a lista de todos os pedidos usando o serviço.
-   */
   carregarPedidos(): void {
     this.pedidoService.getPedidos().subscribe({
-      next: (data: Pedido[]) => { // Define o tipo de 'data' como um array de Pedido
+      next: (data: Pedido[]) => {
         this.pedidos = data;
         console.log('Pedidos carregados:', this.pedidos);
       },
-      error: (err: any) => { // Define o tipo de 'err' como 'any' para capturar qualquer erro
+      error: (err: any) => {
         console.error('Erro ao carregar pedidos', err);
       }
     });
   }
 
-  /**
-   * Altera o status de um pedido específico.
-   * @param pedidoId O ID do pedido a ser alterado.
-   * @param novoStatus O novo status para o pedido.
-   */
   mudarStatus(pedidoId: number, novoStatus: string): void {
     this.pedidoService.atualizarStatus(pedidoId, novoStatus).subscribe({
-        next: (pedidoAtualizado: Pedido) => { // Define o tipo da resposta como Pedido
-            // Encontra o pedido na lista local e o atualiza com os novos dados
+        next: (pedidoAtualizado: Pedido) => {
             const index = this.pedidos.findIndex(p => p.idPedido === pedidoId);
             if (index !== -1) {
                 this.pedidos[index] = pedidoAtualizado;
             }
-            console.log(`Status do pedido ${pedidoId} alterado para ${novoStatus}`);
         },
-        error: (err: any) => { // Define o tipo de 'err' como 'any'
-            console.error(`Erro ao mudar status do pedido ${pedidoId}`, err);
+        error: (err: any) => {
             alert('Erro ao mudar o status do pedido.');
+            console.error(err);
         }
     });
   }
+
   fecharPedido(pedidoId: number): void {
     this.pedidoService.fecharPedido(pedidoId).subscribe({
-        next: (pedidoAtualizado: Pedido) => {
+        next: () => {
             console.log(`Pedido ${pedidoId} fechado com sucesso.`);
-            // Para garantir que a tela de mesas também atualize,
-            // o ideal é recarregar a lista de pedidos do zero.
-            this.carregarPedidos();
+            this.carregarPedidos(); // Recarrega a lista para refletir as mudanças
         },
         error: (err: any) => {
             alert('Erro ao fechar o pedido.');
             console.error(err);
         }
     });
-}
+  }
 }

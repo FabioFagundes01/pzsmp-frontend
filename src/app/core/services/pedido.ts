@@ -20,7 +20,6 @@ export class PedidoService {
 
   /**
    * Busca todos os pedidos ativos de uma mesa específica.
-   * @param numeroMesa O número da mesa.
    */
   getPedidosPorMesa(numeroMesa: number): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(`${this.apiUrl}/mesa/${numeroMesa}`);
@@ -28,7 +27,6 @@ export class PedidoService {
 
   /**
    * Envia os dados de um novo pedido para a API.
-   * @param pedidoData Objeto com os dados do pedido (idMesa, itens, etc.).
    */
   realizarPedido(pedidoData: any): Observable<Pedido> {
     return this.http.post<Pedido>(this.apiUrl, pedidoData);
@@ -36,8 +34,6 @@ export class PedidoService {
 
   /**
    * Envia uma requisição para atualizar o status de um pedido.
-   * @param id O ID do pedido a ser atualizado.
-   * @param novoStatus O novo status para o pedido.
    */
   atualizarStatus(id: number, novoStatus: string): Observable<Pedido> {
     const requestBody = { novoStatus: novoStatus };
@@ -46,16 +42,23 @@ export class PedidoService {
 
   /**
    * Envia uma lista de novos itens para serem adicionados a um pedido existente.
-   * @param pedidoId O ID do pedido a ser modificado.
-   * @param itens A lista de novos itens a serem adicionados.
    */
   adicionarItensAoPedido(pedidoId: number, itens: { idProduto: number, quantidade: number }[]): Observable<Pedido> {
     const requestBody = { itens: itens };
     return this.http.post<Pedido>(`${this.apiUrl}/${pedidoId}/itens`, requestBody);
   }
 
+  /**
+   * Envia uma requisição para fechar um pedido de mesa.
+   */
   fecharPedido(pedidoId: number): Observable<Pedido> {
-  // O corpo da requisição é vazio, pois a lógica está toda no backend
-  return this.http.put<Pedido>(`${this.apiUrl}/${pedidoId}/fechar`, {});
-}
+    return this.http.put<Pedido>(`${this.apiUrl}/${pedidoId}/fechar`, {});
+  }
+
+  /**
+   * Envia uma requisição para fechar o caixa (excluir todos os pedidos).
+   */
+  fecharCaixa(): Observable<void> {
+    return this.http.delete<void>(`${this.apiUrl}/fechar-caixa`);
+  }
 }

@@ -102,3 +102,26 @@
   overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo for grande */
   border-left: 2px solid black;
 }
+
+.sidebar-actions {
+      padding: 20px;
+      margin-top: auto; /* Empurra esta seção para baixo */
+    }
+
+    .btn-fechar-caixa {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid #dc3545;
+      background-color: #dc3545;
+      color: white;
+      border-radius: 5px;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .btn-fechar-caixa:hover {
+      background-color: #c82333;
+      border-color: #bd2130;
+    }
