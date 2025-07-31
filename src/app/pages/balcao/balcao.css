@@ -1,62 +1,106 @@
-/* Estilos gerais da página */
-.balcao-container h1 { margin-bottom: 10px; }
-.balcao-container p { margin-top: 0; color: #666; margin-bottom: 30px; }
+/* Utiliza os estilos globais para o cabeçalho da página */
+.page-header {
+  margin-bottom: 30px;
+}
 
-/* Layout de duas colunas */
+.page-header h1 {
+  margin: 0 0 5px 0;
+  font-size: 2rem;
+}
+
+.page-header p {
+  margin: 0;
+  color: var(--cor-texto-secundario);
+  font-size: 1rem;
+}
+
+/* Container principal do formulário, estilizado como um grande cartão */
 .novo-pedido-view {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 30px;
+  gap: 40px;
   background-color: #fff;
-  padding: 30px;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+  padding: 40px;
+  border-radius: var(--border-radius);
+  box-shadow: var(--sombra-card);
+  border: 1px solid var(--cor-borda);
 }
 
+/* Coluna da esquerda (Cardápio) */
 .cardapio-coluna {
-  border-right: 1px solid #eee;
-  padding-right: 20px;
+  border-right: 1px solid var(--cor-borda);
+  padding-right: 40px;
   display: flex;
   flex-direction: column;
+}
+
+.cardapio-coluna h4, .pedido-coluna h4 {
+  font-size: 1.3rem;
+  margin-top: 0;
+  margin-bottom: 20px;
 }
 
 /* Filtros do Cardápio */
 .filtros-cardapio {
   display: flex;
   flex-wrap: wrap;
-  gap: 5px;
-  margin-bottom: 15px;
+  gap: 10px;
+  margin-bottom: 20px;
 }
-.filtros-cardapio button {
-  padding: 5px 10px;
-  font-size: 0.8rem;
-  border: 1px solid #ddd;
-  border-radius: 15px;
+
+.btn-filtro {
+  padding: 8px 18px;
+  border: 1px solid var(--cor-borda);
+  border-radius: 20px;
+  background-color: #fff;
   cursor: pointer;
+  font-weight: 500;
+  transition: all 0.2s;
 }
-.filtros-cardapio button.active {
-  background-color: #333;
+
+.btn-filtro:hover {
+  background-color: var(--cor-fundo);
+  border-color: #a0aec0;
+}
+
+.btn-filtro.active {
+  background-color: var(--cor-texto-principal);
   color: white;
+  border-color: var(--cor-texto-principal);
 }
 
 .lista-produtos-cardapio {
   max-height: 400px;
   overflow-y: auto;
 }
+
 .item-cardapio {
-  padding: 10px;
+  padding: 12px;
   cursor: pointer;
-  border-radius: 4px;
+  border-radius: var(--border-radius);
+  font-weight: 500;
 }
+
 .item-cardapio:hover {
-  background-color: #f0f0f0;
+  background-color: var(--cor-fundo);
 }
 
-/* Coluna do Pedido Atual */
-.form-group { margin-bottom: 20px; }
-.form-group label { display: block; margin-bottom: 8px; font-weight: bold; }
-.form-group input { width: 100%; padding: 10px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box; }
+/* Coluna da direita (Pedido Atual) */
+.item-pedido-atual {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cor-borda);
+}
 
-.item-pedido-atual { display: flex; justify-content: space-between; padding: 8px 0; }
-.total-pedido { text-align: right; font-size: 1.2rem; margin-top: 15px; }
-.btn-finalizar-pedido { width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 20px; }
+.total-pedido {
+  text-align: right;
+  font-size: 1.3rem;
+  font-weight: 600;
+  margin-top: 20px;
+}
+
+.btn-finalizar-pedido {
+  width: 100%;
+  margin-top: 25px;
+}

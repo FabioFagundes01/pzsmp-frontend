@@ -1,148 +1,73 @@
-.pedidos-header {
-  margin-bottom: 20px;
-}
-
-.pedidos-header h1 {
-  margin: 0;
-}
-
 .pedidos-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: 30px;
 }
 
-.pedido-card {
-  background-color: #fff;
-  border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-  padding: 20px;
-  display: flex;
-  flex-direction: column;
-}
-
-.card-header, .card-footer {
+.pedido-card .card-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+  margin-bottom: 15px;
+  border-bottom: 1px solid var(--cor-borda);
 }
 
-.card-footer {
-  border-bottom: none;
-  border-top: 1px solid #eee;
-  padding-top: 10px;
-  margin-top: auto;
-  font-size: 0.9rem;
-}
-
-.card-header h3 {
+.pedido-card .card-header h3 {
   margin: 0;
-  font-size: 1.1rem;
+  font-size: 1.2rem;
 }
 
-.card-header span {
-  background-color: #e0e0e0;
-  padding: 4px 8px;
-  border-radius: 12px;
+.pedido-card .tags {
+  display: flex;
+  gap: 8px;
+}
+
+.pedido-card .tag {
+  padding: 4px 12px;
+  border-radius: 15px;
   font-size: 0.8rem;
-  font-weight: bold;
+  font-weight: 600;
+  background-color: #e2e8f0;
+  color: #4a5568;
 }
 
-.itens-lista {
-  list-style-type: none;
+.pedido-card .tag.status {
+  background-color: var(--cor-aviso);
+  color: #5d4a00;
+}
+
+.pedido-card .itens-lista {
+  list-style: none;
   padding: 0;
   margin: 0;
 }
 
-.itens-lista li {
+.pedido-card .itens-lista li {
   display: flex;
   justify-content: space-between;
   padding: 8px 0;
-  font-size: 0.95rem;
 }
 
-/* No final do arquivo pedidos.css */
-.card-actions {
+.pedido-card .card-footer {
+  display: flex;
+  justify-content: space-between;
   margin-top: 15px;
   padding-top: 15px;
-  border-top: 1px solid #eee;
+  border-top: 1px solid var(--cor-borda);
+  font-weight: 500;
+}
+
+.pedido-card .card-actions {
+  margin-top: 20px;
   display: flex;
   gap: 10px;
 }
 
-.card-actions button {
+.pedido-card .card-actions .btn {
   flex-grow: 1;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  transition: background-color 0.2s;
 }
 
-.card-actions button:hover {
-  opacity: 0.9;
-}
-
-/* Estilo específico para o botão de "pronto" */
-.card-actions button:nth-of-type(1) {
-  background-color: #28a745; /* Verde */
-  color: white;
-}
-
-/* Estilo específico para o botão de "finalizar" */
-.card-actions button:nth-of-type(2) {
-  background-color: #007bff; /* Azul */
-  color: white;
-}
-
-/* ... (CSS anterior) ... */
-
-.card-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  border-bottom: 1px solid #eee;
-  gap: 10px; /* Adiciona espaço entre os elementos */
-}
-
-.card-header h3 {
-  margin: 0;
-  font-size: 1.1rem;
-  flex-grow: 1; /* Faz o título ocupar o espaço disponível */
-}
-
-.mesa-info {
-  background-color: #e2e3e5;
-  color: #383d41;
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  white-space: nowrap; /* Impede que o texto quebre a linha */
-}
-
-.status-info {
-  background-color: #e0e0e0;
-  padding: 4px 8px;
-  border-radius: 12px;
-  font-size: 0.8rem;
-  font-weight: bold;
-  white-space: nowrap;
-}
-
-.btn-fechar-pedido {
-  width: 100%;
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  font-weight: bold;
-  cursor: pointer;
-  background-color: #17a2b8; /* Cor Ciano/Azul claro */
-  color: white;
-}
+/* Cores customizadas para os botões de status */
+.btn-sucesso { background-color: var(--cor-sucesso); color: white; }
+.btn-info { background-color: #17a2b8; color: white; }

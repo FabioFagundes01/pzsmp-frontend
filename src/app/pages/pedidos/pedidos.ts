@@ -1,12 +1,16 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router'; // <<< 1. IMPORTE AQUI
 import { PedidoService } from '../../core/services/pedido';
 import { Pedido } from '../../core/models/pedido.model';
 
 @Component({
   selector: 'app-pedidos',
   standalone: true,
-  imports: [CommonModule],
+  imports: [
+    CommonModule,
+    RouterModule // <<< 2. ADICIONE AQUI
+  ],
   templateUrl: './pedidos.html',
   styleUrls: ['./pedidos.css']
 })
@@ -24,7 +28,6 @@ export class Pedidos implements OnInit {
     this.pedidoService.getPedidos().subscribe({
       next: (data: Pedido[]) => {
         this.pedidos = data;
-        console.log('Pedidos carregados:', this.pedidos);
       },
       error: (err: any) => {
         console.error('Erro ao carregar pedidos', err);
@@ -50,8 +53,7 @@ export class Pedidos implements OnInit {
   fecharPedido(pedidoId: number): void {
     this.pedidoService.fecharPedido(pedidoId).subscribe({
         next: () => {
-            console.log(`Pedido ${pedidoId} fechado com sucesso.`);
-            this.carregarPedidos(); // Recarrega a lista para refletir as mudanças
+            this.carregarPedidos();
         },
         error: (err: any) => {
             alert('Erro ao fechar o pedido.');

@@ -61,4 +61,11 @@ export class PedidoService {
   fecharCaixa(): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/fechar-caixa`);
   }
+  registrarPagamento(pagamentoData: any): Observable<any> {
+  // A API de pagamento está num endpoint diferente
+  return this.http.post('http://localhost:8081/api/pagamentos', pagamentoData);
+}
+getPedidoById(id: number): Observable<Pedido> {
+  return this.http.get<Pedido>(`${this.apiUrl}/${id}`);
+}
 }

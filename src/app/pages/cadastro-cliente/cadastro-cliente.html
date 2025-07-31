@@ -1,12 +1,58 @@
-<div class="gerenciar-clientes">
-  
-  <!-- ================================================== -->
-  <!-- SEÇÃO DO FORMULÁRIO DE CADASTRO -->
-  <!-- ================================================== -->
-  <div class="form-section">
-    <h2>Cadastrar Novo Cliente</h2>
+<!-- Seção da Lista (visível por padrão) -->
+<div *ngIf="modo === 'lista'">
+  <div class="page-header">
+    <h1>Clientes</h1>
+    <p>Consulte, edite ou adicione novos clientes ao sistema.</p>
+    <button class="btn btn-primario" (click)="irParaModoCadastro()">
+      + Cadastrar Novo Cliente
+    </button>
+  </div>
+
+  <div class="card">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>E-mail</th>
+          <th>Telefone</th>
+          <th>Endereço Principal</th>
+          <th>Ações</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cliente of listaClientes">
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.nome }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.telefone }}</td>
+          <td>
+            <span *ngIf="cliente.endereco">
+              {{ cliente.endereco.rua }}, {{ cliente.endereco.numero }}
+            </span>
+            <span *ngIf="!cliente.endereco" class="texto-secundario">
+              N/A
+            </span>
+          </td>
+          <td class="acoes-cell">
+            <button class="btn-acao btn-aviso" (click)="abrirModalEdicao(cliente)">Editar</button>
+            <button class="btn-acao btn-erro" (click)="excluirCliente(cliente.id)">Excluir</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- Seção do Formulário (visível ao clicar no botão) -->
+<div *ngIf="modo === 'cadastro'">
+  <div class="page-header">
+    <h1>Cadastrar Novo Cliente</h1>
+    <p>Preencha os dados abaixo para adicionar um novo cliente ao sistema.</p>
+  </div>
+
+  <div class="card">
     <form (ngSubmit)="cadastrarCliente()">
-      
       <h4>Dados Pessoais</h4>
       <div class="form-grid">
         <div class="form-group">
@@ -22,7 +68,6 @@
           <input id="telefone" type="text" [(ngModel)]="novoCliente.telefone" name="telefone">
         </div>
       </div>
-
       <hr>
       <h4>Endereço Principal</h4>
       <div class="form-grid">
@@ -47,56 +92,19 @@
           <input id="cidade" type="text" [(ngModel)]="novoCliente.cidade" name="cidade">
         </div>
       </div>
-
-      <button type="submit" class="submit-btn">Cadastrar Cliente</button>
+      <div class="form-actions">
+        <button type="button" class="btn btn-secundario" (click)="voltarParaLista()">Cancelar</button>
+        <button type="submit" class="btn btn-primario">Salvar Cliente</button>
+      </div>
     </form>
-  </div>
-
-  <!-- ================================================== -->
-  <!-- SEÇÃO DA TABELA DE LISTAGEM -->
-  <!-- ================================================== -->
-  <div class="list-section">
-    <h2>Clientes Cadastrados</h2>
-    <table>
-      <thead>
-        <tr>
-          <th>ID</th>
-          <th>Nome</th>
-          <th>E-mail</th>
-          <th>Telefone</th>
-          <th>Endereço Principal</th>
-          <th>Ações</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr *ngFor="let cliente of listaClientes">
-          <td>{{ cliente.id }}</td>
-          <td>{{ cliente.nome }}</td>
-          <td>{{ cliente.email }}</td>
-          <td>{{ cliente.telefone }}</td>
-          <td>
-            <span *ngIf="cliente.endereco">
-              {{ cliente.endereco.rua }}, {{ cliente.endereco.numero }}
-            </span>
-          </td>
-          <td>
-            <button class="btn-acao btn-editar" (click)="abrirModalEdicao(cliente)">Editar</button>
-            <button class="btn-acao btn-excluir" (click)="excluirCliente(cliente.id)">Excluir</button>
-          </td>
-        </tr>
-      </tbody>
-    </table>
   </div>
 </div>
 
-<!-- ================================================== -->
-<!-- MODAL DE EDIÇÃO DE CLIENTE -->
-<!-- ================================================== -->
+<!-- Modal de Edição -->
 <div class="modal-overlay" *ngIf="clienteEmEdicao">
   <div class="modal-content">
     <h2>Editar Cliente</h2>
     <form (ngSubmit)="salvarEdicao()">
-      <!-- O formulário de edição é idêntico ao de cadastro -->
       <h4>Dados Pessoais</h4>
       <div class="form-grid">
         <div class="form-group">
@@ -137,8 +145,8 @@
         </div>
       </div>
       <div class="modal-actions">
-        <button type="button" class="btn-cancelar" (click)="fecharModalEdicao()">Cancelar</button>
-        <button type="submit" class="btn-salvar">Salvar Alterações</button>
+        <button type="button" class="btn btn-secundario" (click)="fecharModalEdicao()">Cancelar</button>
+        <button type="submit" class="btn btn-primario">Salvar Alterações</button>
       </div>
     </form>
   </div>

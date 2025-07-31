@@ -13,6 +13,9 @@ import { Funcionario } from '../../core/models/funcionario.model';
 })
 export class Funcionarios implements OnInit {
 
+  // Variável para controlar a visualização: 'lista' ou 'cadastro'
+  modo: 'lista' | 'cadastro' = 'lista';
+
   listaFuncionarios: Funcionario[] = [];
   novoFuncionario = {
     nome: '',
@@ -38,14 +41,25 @@ export class Funcionarios implements OnInit {
     this.funcionarioService.cadastrarFuncionario(this.novoFuncionario).subscribe({
       next: (novoFuncionarioCadastrado) => {
         alert(`Funcionário "${novoFuncionarioCadastrado.nome}" cadastrado com sucesso!`);
-        this.carregarFuncionarios(); // Atualiza a lista na tela
-        // Limpa o formulário
-        this.novoFuncionario = { nome: '', telefone: '', cargo: '', login: '', senha: '' };
+        this.carregarFuncionarios(); // Atualiza a lista
+        this.voltarParaLista(); // Volta para a tela de listagem
       },
       error: (err) => {
         alert('Erro ao cadastrar funcionário.');
         console.error(err);
       }
     });
+  }
+
+  // Método para mudar para a tela de cadastro
+  irParaModoCadastro(): void {
+    this.modo = 'cadastro';
+  }
+
+  // Método para voltar para a tela de listagem
+  voltarParaLista(): void {
+    // Limpa o formulário antes de voltar
+    this.novoFuncionario = { nome: '', telefone: '', cargo: '', login: '', senha: '' };
+    this.modo = 'lista';
   }
 }

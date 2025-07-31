@@ -1,56 +1,52 @@
-<div class="cardapio-container">
+<div class="page-header">
   <h1>Cardápio</h1>
+  <p>Navegue pelas categorias e gerencie os produtos disponíveis.</p>
+</div>
 
-  <!-- Menu de Filtros Horizontal -->
-  <div class="filtros-container">
-    <button *ngFor="let tipo of tiposDeProduto"
-            class="filtro-btn"
-            [class.active]="filtroAtual === tipo"
-            (click)="filtrarProdutos(tipo)">
-      {{ formatarNomeFiltro(tipo) }}
-    </button>
-  </div>
+<!-- Menu de Filtros Horizontal -->
+<div class="filtros-container">
+  <button *ngFor="let tipo of tiposDeProduto"
+          class="btn-filtro"
+          [class.active]="filtroAtual === tipo"
+          (click)="filtrarProdutos(tipo)">
+    {{ formatarNomeFiltro(tipo) }}
+  </button>
+</div>
 
-  <!-- Grade de Produtos -->
-  <div class="cardapio-grid">
-    <div *ngFor="let produto of produtosFiltrados" class="produto-card">
-      
-      <!-- Lógica para exibir a imagem do produto ou uma imagem padrão -->
+<!-- Grade de Produtos -->
+<div class="cardapio-grid">
+  <div *ngFor="let produto of produtosFiltrados" class="card produto-card">
+    <div class="imagem-container">
       <ng-container *ngIf="produto.imagemUrl; else placeholder">
-        <!-- Se o produto tiver uma imagemUrl, usa ela -->
         <img [src]="'http://localhost:8081/product-images/' + produto.imagemUrl" alt="{{ produto.nome }}">
       </ng-container>
       <ng-template #placeholder>
-        <!-- Senão, usa a imagem padrão -->
-        <img src="assets/images/placeholder-pizza.png" alt="{{ produto.nome }}">
+        <div class="imagem-placeholder">
+          <span>Sem Imagem</span>
+        </div>
       </ng-template>
-
-      <div class="produto-info">
-        <h3>{{ produto.nome }}</h3>
-        <p>R$ {{ produto.preco.toFixed(2) }}</p>
-      </div>
-
-      <!-- Botões de Ação para Editar e Excluir -->
-      <div class="card-actions">
-        <button class="btn-editar" (click)="abrirModalEdicao(produto)">Editar</button>
-        <button class="btn-excluir" (click)="excluirProduto(produto.id_produto)">Excluir</button>
-      </div>
     </div>
-  </div>
-
-  <!-- Mensagem caso não haja produtos no filtro selecionado -->
-  <div *ngIf="produtosFiltrados.length === 0" class="sem-produtos">
-    <p>Não há produtos nesta categoria no momento.</p>
+    <div class="produto-info">
+      <h3>{{ produto.nome }}</h3>
+      <p>R$ {{ produto.preco.toFixed(2) }}</p>
+    </div>
+    <div class="card-actions">
+      <button class="btn btn-aviso" (click)="abrirModalEdicao(produto)">Editar</button>
+      <button class="btn btn-erro" (click)="excluirProduto(produto.id_produto)">Excluir</button>
+    </div>
   </div>
 </div>
 
+<!-- Mensagem caso não haja produtos -->
+<div *ngIf="produtosFiltrados.length === 0" class="sem-produtos card">
+  <p>Não há produtos nesta categoria no momento.</p>
+</div>
 
 <!-- ================================================== -->
-<!-- MODAL DE EDIÇÃO (aparece quando produtoEmEdicao não é nulo) -->
+<!-- MODAL DE EDIÇÃO -->
 <!-- ================================================== -->
-<div class="modal-overlay" [class.visivel]="produtoEmEdicao">
-  
-  <div *ngIf="produtoEmEdicao" class="modal-content">
+<div class="modal-overlay" *ngIf="produtoEmEdicao">
+  <div class="modal-content">
     <h2>Editar Produto</h2>
     <form (ngSubmit)="salvarEdicao()">
       
@@ -70,6 +66,7 @@
           <option *ngFor="let tipo of tiposDeProduto" [value]="tipo">{{ formatarNomeFiltro(tipo) }}</option>
         </select>
       </div>
+      
       <div class="form-group">
         <label for="edit-imagem">Trocar Imagem (opcional)</label>
         <input type="file" id="edit-imagem" (change)="onFileSelected($event)">
@@ -81,5 +78,4 @@
       </div>
     </form>
   </div>
-
 </div>

@@ -1,28 +1,20 @@
-<div class="pedidos-header">
+<div class="page-header">
   <h1>Pedidos em Andamento</h1>
-  <p>Ordem de chegada</p>
+  <p>Visualize e gerencie todos os pedidos ativos do restaurante.</p>
 </div>
 
 <div class="pedidos-grid">
-  <!-- O *ngFor percorre a lista de pedidos e cria um cartão para cada um -->
-  <div *ngFor="let pedido of pedidos" class="pedido-card">
+  <div *ngFor="let pedido of pedidos" class="card pedido-card">
     
-    <!-- CABEÇALHO DO CARTÃO -->
     <div class="card-header">
       <h3>Pedido Nº {{ pedido.idPedido }}</h3>
-      
-      <!-- Lógica para exibir a origem do pedido -->
-      <span class="mesa-info" *ngIf="pedido.numeroMesa">
-        Mesa {{ pedido.numeroMesa }}
-      </span>
-      <span class="mesa-info" *ngIf="pedido.nomeClienteTemporario && !pedido.numeroMesa">
-        Balcão
-      </span>
-
-      <span class="status-info">{{ pedido.status }}</span>
+      <div class="tags">
+        <span class="tag" *ngIf="pedido.numeroMesa">Mesa {{ pedido.numeroMesa }}</span>
+        <span class="tag" *ngIf="pedido.nomeClienteTemporario && !pedido.numeroMesa">Balcão</span>
+        <span class="tag status">{{ pedido.status }}</span>
+      </div>
     </div>
 
-    <!-- CORPO DO CARTÃO (LISTA DE ITENS) -->
     <div class="card-body">
       <ul class="itens-lista">
         <li *ngFor="let item of pedido.itens">
@@ -32,31 +24,26 @@
       </ul>
     </div>
 
-    <!-- RODAPÉ DO CARTÃO -->
     <div class="card-footer">
-      <!-- Mostra o nome do cliente cadastrado OU o nome temporário -->
       <span>Cliente: {{ pedido.cliente?.nome || pedido.nomeClienteTemporario || 'Não identificado' }}</span>
       <strong>Total: R$ {{ pedido.total.toFixed(2) }}</strong>
     </div>
 
-    <!-- BOTÕES DE AÇÃO -->
     <div class="card-actions">
-      <!-- Botão para marcar como PRONTO -->
-      <button *ngIf="pedido.status === 'PREPARANDO'" (click)="mudarStatus(pedido.idPedido, 'PRONTO')">
+      <button *ngIf="pedido.status === 'PREPARANDO'" class="btn btn-sucesso" (click)="mudarStatus(pedido.idPedido, 'PRONTO')">
           Marcar como Pronto
       </button>
-
-      <!-- Lógica para o próximo passo após 'PRONTO' -->
       <div *ngIf="pedido.status === 'PRONTO'">
-        <!-- Se o pedido TEM um número de mesa, mostra "Fechar Pedido" -->
-        <button *ngIf="pedido.numeroMesa" class="btn-fechar-pedido" (click)="fecharPedido(pedido.idPedido)">
+        <button *ngIf="pedido.numeroMesa" class="btn btn-info" (click)="fecharPedido(pedido.idPedido)">
             Fechar Pedido
         </button>
-        <!-- Se o pedido NÃO TEM um número de mesa (é delivery/balcão), mostra "Finalizar Entrega" -->
-        <button *ngIf="!pedido.numeroMesa" (click)="mudarStatus(pedido.idPedido, 'ENTREGUE')">
+        <button *ngIf="!pedido.numeroMesa" class="btn btn-info" (click)="mudarStatus(pedido.idPedido, 'ENTREGUE')">
             Finalizar Entrega
         </button>
       </div>
+      <button class="btn btn-primario" [routerLink]="['/app/pagamento', pedido.idPedido]">
+        Ir para Pagamento
+      </button>
     </div>
   </div>
 </div>

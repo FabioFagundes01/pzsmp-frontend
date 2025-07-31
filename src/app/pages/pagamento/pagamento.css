@@ -1,0 +1,51 @@
+.pagamento-container {
+  max-width: 600px;
+  margin: 20px auto;
+  background-color: #fff;
+  padding: 40px;
+  border-radius: 8px;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+}
+h1, h2 {
+  text-align: center;
+  margin-top: 0;
+}
+.detalhes-pedido ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px 0;
+}
+.detalhes-pedido li, .total {
+  display: flex;
+  justify-content: space-between;
+  padding: 15px 0;
+  border-bottom: 1px solid #eee;
+}
+.total {
+  font-size: 1.2rem;
+}
+.metodo-pagamento .opcoes {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 20px;
+}
+.metodo-pagamento label {
+  display: block;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.btn-confirmar {
+  width: 100%;
+  padding: 15px;
+  margin-top: 30px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+}

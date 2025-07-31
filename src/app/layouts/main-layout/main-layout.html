@@ -12,18 +12,20 @@
       <a routerLink="/app/mesas" routerLinkActive="active"><i class="fas fa-chair"></i>Mesas</a>
       <a routerLink="/app/balcao" routerLinkActive="active"><i class="fas fa-cash-register"></i> Balcão</a>
         <a routerLink="/app/cadastro-produto" routerLinkActive="active">
-    <i>[ícone]</i> Cadastro de Produto
+    <i>[]</i> Cadastro de Produto
   </a>
   <a routerLink="/app/cadastro-cliente" routerLinkActive="active">
-    <i>[ícone]</i> Cadastrar Clientes
+    <i>[]</i>Clientes
   </a>
 
     </nav>
-    <div class="sidebar-actions">
-      <button class="btn-fechar-caixa" (click)="fecharCaixa()">Fechar Caixa</button>
-    </div>
-    <div class="sidebar-footer">
-      <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+    <div class="sidebar-bottom">
+      <div class="sidebar-actions">
+        <button class="btn-fechar-caixa" (click)="fecharCaixa()">Fechar Caixa</button>
+      </div>
+      <div class="sidebar-footer">
+        <a (click)="logout()"><i class="fas fa-sign-out-alt"></i> Sair</a>
+      </div>
     </div>
   </aside>
 

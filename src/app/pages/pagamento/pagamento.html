@@ -1,0 +1,41 @@
+<div class="pagamento-container" *ngIf="pedido">
+  <h1>Pagamento</h1>
+
+  <div class="detalhes-pedido">
+    <h2>Detalhes do Pedido #{{ pedido.idPedido }}</h2>
+    <ul>
+      <li *ngFor="let item of pedido.itens">
+        <span>{{ item.quantidade }}x {{ item.nomeProduto }}</span>
+        <span>R$ {{ (item.precoUnitario * item.quantidade).toFixed(2) }}</span>
+      </li>
+    </ul>
+    <div class="total">
+      <span>Total</span>
+      <strong>R$ {{ pedido.total.toFixed(2) }}</strong>
+    </div>
+  </div>
+
+  <div class="metodo-pagamento">
+    <h2>Método de Pagamento</h2>
+    <div class="opcoes">
+      <label>
+        <input type="radio" name="metodo" value="DINHEIRO" [(ngModel)]="metodoPagamento">
+        Dinheiro
+      </label>
+      <label>
+        <input type="radio" name="metodo" value="PIX" [(ngModel)]="metodoPagamento">
+        Pix
+      </label>
+      <label>
+        <input type="radio" name="metodo" value="CARTAO_CREDITO" [(ngModel)]="metodoPagamento">
+        Cartão de Crédito
+      </label>
+      <label>
+        <input type="radio" name="metodo" value="CARTAO_DEBITO" [(ngModel)]="metodoPagamento">
+        Cartão de Débito
+      </label>
+    </div>
+  </div>
+
+  <button class="btn-confirmar" (click)="confirmarPagamento()">Confirmar Pagamento</button>
+</div>

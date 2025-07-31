@@ -1,127 +1,121 @@
 .main-container {
   display: flex;
   height: 100vh;
-  width: 100%;
+  width: 100vw;
+  overflow: hidden;
 }
 
 .sidebar {
-  width: 240px;
-  background-color: #fcfafa;
-  color: rgb(0, 0, 0);
+  width: 250px;
+  flex-shrink: 0;
+  background-color: var(--cor-sidebar);
+  color: var(--cor-texto-principal);
   display: flex;
   flex-direction: column;
-  padding: 20px 0;
-}
-
-.sidebar-header {
-  margin-top: -20px;
-  padding: 5px 10px -50px 10px;
-  text-align: left;
-  margin-left: 5px;
-  margin-bottom: 0px;
-  border-bottom: 2px solid #333;
-  display: flex;
-  align-items: left;
-  justify-content: left;
-  gap: 5px; /* Espaço entre o ícone e o texto */
-  
-}
-
-.logo-icon {
-  width: 50px;   /* ou 32px, conforme o tamanho da sua imagem */
-  height: 50px;
-  object-fit: contain;
-}
-
-.sidebar-header h3 {
-  display: flex;
-  align-items: center;   /* 🔥 Alinha verticalmente */
-  justify-content: center;
-  gap: 10px;              /* Espaço entre imagem e texto */
-  font-size: 1.1rem;
-}
-
-.sidebar-nav {
-  flex-grow: 1;
-  display: flex;
-  flex-direction: column;
-  margin-top: 10px;
-}
-
-.sidebar-nav a {
-  color: #0a0a0a;
-  text-decoration: none;
-  padding: 15px 20px;
-  transition: background-color 0.2s, color 0.2s;
-  border: 1px solid #000000;     /* <<< BORDA COMPLETA */
-  margin: 2px 10px;           /* opcional: espaço entre os itens */
-  border-radius: 4px; 
-}
-
-.sidebar-nav a:hover {
-  background-color: #333;
-  color: rgb(0, 0, 0);
-}
-
-.sidebar-nav a.active {
-  background-color: #837b7b; /* Cor de destaque para o link ativo */
-  color: rgb(0, 0, 0);
-  font-weight: bold;
-}
-.sidebar-nav a i {
-  margin-right: 10px;
-  width: 20px;
-  text-align: center;
-}
-
-.sidebar-footer {
-    padding: 10px;
-    border-top: 5px solid #000000;
-    text-align: center;
-    border: 1px solid #000000;     /* <<< BORDA COMPLETA */
-    margin: 2px 5px;           /* opcional: espaço entre os itens */
-    border-radius: 4px; 
-}
-
-.sidebar-footer a {
-    color: #000000;
-    text-decoration: none;
-    cursor: pointer;
-    
-}
-
-.sidebar-footer a:hover {
-    color: rgb(0, 0, 0);
-    
+  border-right: 1px solid var(--cor-borda);
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 .content-area {
   flex-grow: 1;
-  padding: 30px;
-  background-color: #f4f7f6;
-  overflow-y: auto; /* Adiciona barra de rolagem se o conteúdo for grande */
-  border-left: 2px solid black;
+  padding: 40px;
+  overflow-y: auto;
+}
+
+/* --- Estilos do Menu --- */
+
+.sidebar-header {
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  border-bottom: 1px solid var(--cor-borda);
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.sidebar-nav {
+  flex-grow: 1;
+  overflow-y: auto;
+  margin-top: 15px;
+}
+
+.sidebar-nav a {
+  color: var(--cor-texto-secundario);
+  text-decoration: none;
+  padding: 12px 15px;
+  margin: 4px 0;
+  border-radius: var(--border-radius);
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 500;
+  transition: all 0.2s ease-in-out;
+}
+
+.sidebar-nav a:hover {
+  background-color: var(--cor-fundo);
+  color: var(--cor-texto-principal);
+}
+
+.sidebar-nav a.active {
+  background-color: var(--cor-primaria);
+  color: white;
+  font-weight: 600;
+}
+
+/* Rodapé do Menu */
+.sidebar-bottom {
+  flex-shrink: 0;
+  padding-top: 15px;
+  border-top: 1px solid var(--cor-borda);
 }
 
 .sidebar-actions {
-      padding: 20px;
-      margin-top: auto; /* Empurra esta seção para baixo */
-    }
+  padding: 10px;
+}
 
-    .btn-fechar-caixa {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #dc3545;
-      background-color: #dc3545;
-      color: white;
-      border-radius: 5px;
-      font-weight: bold;
-      font-size: 1rem;
-      cursor: pointer;
-      transition: all 0.2s;
-    }
+.btn-fechar-caixa {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: var(--cor-erro);
+  color: white;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
 
-    .btn-fechar-caixa:hover {
-      background-color: #c82333;
-      border-color: #bd2130;
-    }
+.btn-fechar-caixa:hover {
+  background-color: #c82333;
+}
+
+.sidebar-footer a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  color: var(--cor-texto-secundario);
+  text-decoration: none;
+  cursor: pointer;
+  padding: 15px;
+  font-weight: 500;
+  border-radius: var(--border-radius);
+  transition: background-color 0.2s;
+}
+
+.sidebar-footer a:hover {
+  background-color: var(--cor-fundo);
+}

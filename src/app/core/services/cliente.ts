@@ -37,4 +37,7 @@ export class ClienteService {
 excluirCliente(id: number): Observable<void> {
     return this.http.delete<void>(`${this.apiUrl}/${id}`);
 }
+buscarClientes(termo: string): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>(`${this.apiUrl}/buscar`, { params: { termo } });
+}
 }
