@@ -89,5 +89,17 @@
   flex-grow: 1;
 }
 
-.btn-aviso { background-color: var(--cor-aviso); color: #333; }
-.btn-erro { background-color: var(--cor-erro); color: white; }
+.btn-aviso { background-color: var(--cor-aviso); 
+  color: #333; 
+  border: 1px solid var(--cor-borda);
+  transition: all 0.2s;
+  border-radius: 20px;
+
+}
+.btn-erro { background-color: var(--cor-erro); 
+  color: white; 
+  border: 1px solid var(--cor-borda);
+  transition: all 0.2s;
+  border-radius: 20px;
+  padding: 3px;
+}

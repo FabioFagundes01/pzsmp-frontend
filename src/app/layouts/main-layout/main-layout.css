@@ -95,7 +95,7 @@
 }
 
 .sidebar-nav a.active {
-  background-color: var(--cor-primaria);
+  background-color: rgb(50, 50, 50);
   color: white;
   font-weight: 600;
   box-shadow: 0 4px 10px rgba(0, 82, 204, 0.3);
@@ -145,4 +145,13 @@
 
 .sidebar-footer a:hover {
   background-color: var(--cor-fundo);
+}
+
+
+
+
+.menu-icon {
+  width: 20px;   /* Define a largura do ícone */
+  height: 20px;  /* Define a altura do ícone */
+  object-fit: contain; /* Garante que a imagem não fique distorcida */
 }

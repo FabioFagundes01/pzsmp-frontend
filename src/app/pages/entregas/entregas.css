@@ -60,4 +60,4 @@
 .item-cardapio:hover { background-color: #f0f0f0; }
 .item-pedido-atual { display: flex; justify-content: space-between; padding: 8px 0; }
 .total-pedido { text-align: right; font-size: 1.2rem; margin-top: 15px; }
-.btn-finalizar-pedido { width: 100%; padding: 12px; background-color: #28a745; color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 20px; }
+.btn-finalizar-pedido { width: 100%; padding: 12px; background-color: rgb(50, 50, 50); color: white; border: none; border-radius: 5px; font-size: 16px; cursor: pointer; margin-top: 20px; }

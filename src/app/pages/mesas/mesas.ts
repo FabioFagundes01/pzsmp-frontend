@@ -116,7 +116,7 @@ export class Mesas implements OnInit {
       const pedidoId = this.pedidosDaMesa[0].idPedido;
       this.pedidoService.adicionarItensAoPedido(pedidoId, itensParaApi).subscribe({
         next: () => {
-          alert('Itens adicionados com sucesso!');
+          
           this.carregarMesas();
           this.fecharModal();
         },
@@ -133,7 +133,7 @@ export class Mesas implements OnInit {
       };
       this.pedidoService.realizarPedido(pedidoParaApi).subscribe({
         next: () => {
-          alert(`Novo pedido para a Mesa ${this.mesaSelecionada!.numero} criado com sucesso!`);
+          
           this.carregarMesas();
           this.fecharModal();
         },

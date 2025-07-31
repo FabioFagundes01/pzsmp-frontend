@@ -87,7 +87,7 @@ tbody tr:last-child td {
 input[type="file"]::file-selector-button {
   margin-right: 10px;
   border: none;
-  background: var(--cor-primaria);
+  background: rgb(50, 50, 50);
   padding: 10px 15px;
   border-radius: var(--border-radius);
   color: #fff;
@@ -96,11 +96,11 @@ input[type="file"]::file-selector-button {
 }
 
 .btn-primario {
-  background-color: var(--cor-primaria);
+  background-color: rgb(50, 50, 50);
   color: white;
 }
 .btn-primario:hover {
-  background-color: #0041a3;
+  background-color: rgb(50, 50, 50);
 }
 
 .btn-secundario {
@@ -115,7 +115,7 @@ input[type="file"]::file-selector-button {
   width: 100%;
   padding: 12px;
   border: none;
-  background-color: var(--cor-primaria);
+  background-color: rgb(50, 50, 50);
   color: white;
   border-radius: var(--border-radius);
   font-weight: 600;

@@ -36,7 +36,7 @@
   font-size: 0.8rem;
   font-weight: 600;
   background-color: #e2e8f0;
-  color: #4a5568;
+  color: rgb(50, 50, 50);
 }
 
 .pedido-card .tag.status {
@@ -76,7 +76,7 @@
 }
 
 .btn-primario {
-  background-color: var(--cor-primaria);
+  background-color: rgb(50, 50, 50);
   color: white;
   padding: 12px 25px;
   border: none;

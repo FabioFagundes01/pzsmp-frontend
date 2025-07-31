@@ -41,7 +41,7 @@ h2 {
 .submit-btn {
   margin-top: 20px;
   padding: 12px 25px;
-  background-color: #007bff;
+  background-color: rgb(50, 50, 50);
   color: white;
   border: none;
   border-radius: 5px;
@@ -84,7 +84,7 @@ tbody tr:hover {
 
 .btn-novo {
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: rgb(50, 50, 50);
   color: white;
   border: none;
   border-radius: 5px;
@@ -101,8 +101,9 @@ tbody tr:hover {
 }
 
 .btn-cancelar {
+  margin-top: 20px;
   padding: 12px 25px;
-  background-color: #6c757d;
+  background-color: rgb(50, 50, 50);
   color: white;
   border: none;
   border-radius: 5px;
