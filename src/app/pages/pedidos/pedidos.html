@@ -37,7 +37,7 @@
         <button *ngIf="pedido.numeroMesa" class="btn btn-info" (click)="fecharPedido(pedido.idPedido)">
             Fechar Pedido
         </button>
-        <button *ngIf="!pedido.numeroMesa" class="btn btn-info" (click)="mudarStatus(pedido.idPedido, 'ENTREGUE')">
+        <button *ngIf="!pedido.numeroMesa" class="btn btn-infor" (click)="mudarStatus(pedido.idPedido, 'ENTREGUE')">
             Finalizar Entrega
         </button>
       </div>

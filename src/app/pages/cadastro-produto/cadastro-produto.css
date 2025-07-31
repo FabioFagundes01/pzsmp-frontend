@@ -84,14 +84,15 @@ tbody tr:last-child td {
 }
 
 /* ESTILO DE BOTÃO PADRÃO */
-.btn {
-  padding: 12px 25px;
+input[type="file"]::file-selector-button {
+  margin-right: 10px;
   border: none;
+  background: var(--cor-primaria);
+  padding: 10px 15px;
   border-radius: var(--border-radius);
-  font-size: 1rem;
-  font-weight: 600;
+  color: #fff;
   cursor: pointer;
-  transition: background-color 0.2s;
+  transition: background-color .2s ease-in-out;
 }
 
 .btn-primario {
@@ -109,3 +110,17 @@ tbody tr:last-child td {
 .btn-secundario:hover {
   background-color: #cdd5e0;
 }
+
+.submit-btn {
+  width: 100%;
+  padding: 12px;
+  border: none;
+  background-color: var(--cor-primaria);
+  color: white;
+  border-radius: var(--border-radius);
+  font-weight: 600;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+

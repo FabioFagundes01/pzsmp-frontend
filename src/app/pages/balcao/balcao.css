@@ -104,3 +104,43 @@
   width: 100%;
   margin-top: 25px;
 }
+
+.btn-finalizar-pedido {
+  background-color: var(--cor-sucesso);
+  color: white;
+  box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+  transition: background-color 0.2s, box-shadow 0.2s;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 12px;
+  font-size: 1.2rem;
+  font-weight: 600;
+  cursor: pointer;
+
+}
+
+
+.form-group {
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column; 
+  gap: 10px;
+  border-radius: var(--border-radius);
+  background-color: var(--cor-fundo);
+  padding: 20px;
+  box-shadow: var(--sombra-card);
+  border: 1px solid var(--cor-borda);
+  box-sizing: border-box;
+
+}
+
+.form-group input{
+  width: 100%;
+  padding: 9px;
+  border: 1px solid var(--cor-borda);
+  border-radius: var(--border-radius);
+  box-sizing: border-box;
+  font-size: 1rem;
+  font-family: 'Inter', sans-serif;
+  transition: border-color 0.2s, box-shadow 0.2s;
+}

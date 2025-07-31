@@ -2,8 +2,15 @@
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 30px;
+
 }
 
+.pedido-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
 .pedido-card .card-header {
   display: flex;
   justify-content: space-between;
@@ -68,6 +75,50 @@
   flex-grow: 1;
 }
 
+.btn-primario {
+  background-color: var(--cor-primaria);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
 /* Cores customizadas para os botões de status */
-.btn-sucesso { background-color: var(--cor-sucesso); color: white; }
-.btn-info { background-color: #17a2b8; color: white; }
+.btn-sucesso {
+   background-color: var(--cor-sucesso);
+    color: white; 
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    border: none;
+    border-radius: var(--border-radius);
+  }
+.btn-info { 
+  background-color: var(--cor-sucesso);
+    color: white; 
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+
+}
+.btn-infor { 
+  background-color: var(--cor-sucesso);
+    color: white; 
+    box-shadow: 0 4px 10px rgba(40, 167, 69, 0.2);
+    transition: background-color 0.2s, box-shadow 0.2s;
+    border: none;
+    border-radius: var(--border-radius);
+    padding: 12px;
+    font-size: 1.2rem;
+    font-weight: 600;
+    cursor: pointer;
+    
+}

@@ -45,9 +45,7 @@ export class CadastroProdutoComponent {
 
     this.produtoService.cadastrarProduto(formData).subscribe({
       next: (response) => {
-        console.log('Produto cadastrado!', response);
-        this.mensagemSucesso = `Produto "${response.nome}" cadastrado com sucesso!`;
-        this.limparFormulario();
+        
       },
       error: (err) => {
         console.error('Erro ao cadastrar produto', err);

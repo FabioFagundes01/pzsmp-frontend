@@ -59,6 +59,18 @@ tbody tr:last-child td {
   font-style: italic;
 }
 
+.btn-primario {
+  background-color: var(--cor-primaria);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in-out;
+}
+
 .acoes-cell {
   display: flex;
   gap: 10px;
