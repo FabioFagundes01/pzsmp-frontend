@@ -165,7 +165,7 @@ hr {
   cursor: pointer;
 }
 .form-actions .btn-primario {
-  background-color: var(--cor-sucesso, #28a745);
+  background-color: rgb(50, 50, 50);
   color: white;
 }
 .form-actions .btn-secundario {
@@ -216,9 +216,15 @@ hr {
   cursor: pointer;
 }
 .modal-actions .btn-primario {
-  background-color: var(--cor-sucesso, #28a745);
+  background-color: rgb(50, 50, 50);
   color: white;
 }
+
+.modal-actions .btn-primario:hover {
+  background-color: rgb(80, 80, 80);
+  color: white;
+}
+
 .modal-actions .btn-secundario {
   background-color: #e2e8f0;
   color: #2d3748;

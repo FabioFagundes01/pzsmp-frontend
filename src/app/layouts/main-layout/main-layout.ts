@@ -1,48 +1,85 @@
-    import { Component } from '@angular/core';
-    import { Router, RouterModule } from '@angular/router';
-    import { AuthService } from '../../core/services/auth';
-    import { PedidoService } from '../../core/services/pedido'; // <-- IMPORTE O SERVIÇO
+import { Component, OnInit } from '@angular/core';
+import { Router, RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common'; // Importe CommonModule para usar *ngIf no template
+import { AuthService } from '../../core/services/auth';
+import { PedidoService } from '../../core/services/pedido';
+import { SangriaModalComponent } from '../../shared/components/sangria-modal/sangria-modal';
 
-    @Component({
-      selector: 'app-main-layout',
-      standalone: true,
-      imports: [RouterModule],
-      templateUrl: './main-layout.html',
-      styleUrls: ['./main-layout.css']
-    })
-    export class MainLayoutComponent {
+@Component({
+  selector: 'app-main-layout',
+  standalone: true,
+  // Adicione CommonModule e SangriaModalComponent aos imports
+  imports: [RouterModule, CommonModule, SangriaModalComponent], 
+  templateUrl: './main-layout.html',
+  styleUrls: ['./main-layout.css']
+})
+export class MainLayoutComponent implements OnInit {
 
-      // INJETE O PedidoService AQUI
-      constructor(
-        private authService: AuthService, 
-        private router: Router,
-        private pedidoService: PedidoService
-      ) {}
+  // Propriedades para dados do usuário
+  nomeUsuarioLogado: string | null = null;
+  cargoUsuario: string | null = null;
 
-      logout(): void {
-        this.authService.logout();
-        this.router.navigate(['/auth/login']);
-      }
+  // Propriedade para controlar a visibilidade do modal
+  mostrarModalSangria = false;
 
-      // NOVO MÉTODO PARA FECHAR O CAIXA
-      fecharCaixa(): void {
-        const confirmacao = confirm(
-          'ATENÇÃO!\n\nEsta ação irá apagar TODOS os pedidos em andamento e liberar todas as mesas.\n\nTem certeza que deseja fechar o caixa?'
-        );
+  constructor(
+    private authService: AuthService, 
+    private router: Router,
+    private pedidoService: PedidoService
+  ) {}
 
-        if (confirmacao) {
-          this.pedidoService.fecharCaixa().subscribe({
-            next: () => {
-              alert('Caixa fechado com sucesso! Todos os pedidos foram limpos.');
-              // Recarrega a aplicação para refletir as mudanças em todas as telas
-              window.location.reload();
-            },
-            error: (err) => {
-              alert('Erro ao fechar o caixa. Verifique se você tem permissão de Administrador.');
-              console.error(err);
-            }
-          });
+  /**
+   * Este método é executado quando o componente é iniciado.
+   * Usamos para buscar os dados do usuário que estão salvos.
+   */
+  ngOnInit(): void {
+    this.nomeUsuarioLogado = this.authService.getNomeUsuarioLogado();
+    this.cargoUsuario = this.authService.getCargoUsuarioLogado();
+  }
+
+  /**
+   * Realiza o logout do usuário e o redireciona para a página de login.
+   */
+  logout(): void {
+    this.authService.logout();
+    this.router.navigate(['/auth/login']);
+  }
+
+  /**
+   * Inicia o processo de fechamento de caixa, com uma confirmação.
+   */
+  fecharCaixa(): void {
+    const confirmacao = confirm(
+      'ATENÇÃO!\n\nEsta ação irá apagar TODOS os pedidos em andamento e liberar todas as mesas.\n\nTem certeza que deseja fechar o caixa?'
+    );
+
+    if (confirmacao) {
+      this.pedidoService.fecharCaixa().subscribe({
+        next: () => {
+          alert('Caixa fechado com sucesso! Todos os pedidos foram limpos.');
+          window.location.reload(); // Recarrega a aplicação
+        },
+        error: (err) => {
+          alert('Erro ao fechar o caixa. Verifique se você tem permissão de Administrador.');
+          console.error(err);
         }
-      }
+      });
     }
-    
+  }
+
+  // --- MÉTODOS PARA CONTROLAR O MODAL DE SANGRIA ---
+
+  /**
+   * Abre o modal de sangria.
+   */
+  abrirModalSangria(): void {
+    this.mostrarModalSangria = true;
+  }
+
+  /**
+   * Fecha o modal de sangria (chamado pelo evento 'close' do componente filho).
+   */
+  fecharModalSangria(): void {
+    this.mostrarModalSangria = false;
+  }
+}

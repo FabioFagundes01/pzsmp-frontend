@@ -135,6 +135,6 @@ tbody tr:hover {
 }
 
 .btn-salvar {
-  background-color: var(--cor-sucesso, #28a745);
+  background-color: rgb(50, 50, 50);
   color: white;
 }

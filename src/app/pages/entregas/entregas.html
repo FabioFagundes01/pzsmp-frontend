@@ -5,8 +5,9 @@
       <p>Busque um cliente por nome ou telefone para iniciar um pedido.</p>
     </div>
     <div class="header-actions">
-      <button class="btn btn-primario">
-        + Cadastrar Novo Cliente
+      <button class="btn btn-primario" [routerLink]="['/app/cadastro-cliente']">
+        <i class="fas fa-plus"></i>
+        <span> Cadastrar Novo Cliente  </span>
       </button>
     </div>
   </div>

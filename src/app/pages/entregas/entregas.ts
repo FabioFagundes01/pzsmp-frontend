@@ -6,11 +6,13 @@ import { PedidoService } from '../../core/services/pedido';
 import { ProdutoService } from '../../core/services/produto';
 import { Cliente } from '../../core/models/cliente.model';
 import { Produto } from '../../core/models/produto.model';
+import { AuthRoutingModule } from "../../auth/auth-routing-module";
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-entregas',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, AuthRoutingModule, RouterModule],
   templateUrl: './entregas.html',
   styleUrls: ['./entregas.css']
 })

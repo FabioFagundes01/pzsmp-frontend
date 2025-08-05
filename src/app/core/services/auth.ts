@@ -6,47 +6,68 @@ import { Observable, tap } from 'rxjs';
   providedIn: 'root'
 })
 export class AuthService {
-  // URL base da sua API. Certifique-se de que seu backend esteja rodando.
   private apiUrl = 'http://localhost:8081/api/auth';
 
   constructor(private http: HttpClient) { }
 
   /**
    * Envia as credenciais para a API para tentar fazer o login.
-   * @param credentials Objeto com login e senha.
-   * @returns Um Observable com a resposta da API (que contém o token).
+   * Espera uma resposta que contenha token, nome e cargo do usuário.
    */
   login(credentials: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/login`, credentials).pipe(
       tap(response => {
-        // Se a resposta contiver um token, salva no localStorage.
-        if (response && response.token) {
-          this.setToken(response.token);
+        // Se a resposta da API for bem-sucedida, salva todos os dados do usuário.
+        if (response && response.token && response.nome && response.cargo) {
+          this.salvarDadosUsuario(response.token, response.nome, response.cargo);
         }
       })
     );
   }
 
   /**
-   * Salva o token JWT no localStorage do navegador.
-   * @param token O token a ser salvo.
+   * Salva os dados do usuário no localStorage do navegador.
    */
-  setToken(token: string): void {
+  salvarDadosUsuario(token: string, nome: string, cargo: string): void {
     localStorage.setItem('authToken', token);
+    localStorage.setItem('userName', nome);
+    localStorage.setItem('userRole', cargo);
   }
 
   /**
-   * Recupera o token do localStorage.
-   * @returns O token salvo ou null se não existir.
+   * Recupera o nome do usuário logado do localStorage.
+   */
+  getNomeUsuarioLogado(): string | null {
+    return localStorage.getItem('userName');
+  }
+
+  /**
+   * Recupera o cargo do usuário logado do localStorage.
+   */
+  getCargoUsuarioLogado(): string | null {
+    return localStorage.getItem('userRole');
+  }
+
+  /**
+   * Recupera o token de autenticação do localStorage.
    */
   getToken(): string | null {
     return localStorage.getItem('authToken');
   }
 
   /**
-   * Remove o token do localStorage (para fazer logout).
+   * Verifica se o usuário está autenticado (se existe um token).
+   */
+  isAuthenticated(): boolean {
+    return this.getToken() !== null;
+  }
+
+  /**
+   * Remove todos os dados da sessão do usuário do localStorage.
    */
   logout(): void {
     localStorage.removeItem('authToken');
+    localStorage.removeItem('userName');
+    localStorage.removeItem('userRole');
   }
 }

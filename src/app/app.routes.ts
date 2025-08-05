@@ -11,6 +11,7 @@ import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-prod
 import { CadastroClienteComponent } from './pages/cadastro-cliente/cadastro-cliente';
 import { PagamentoComponent } from './pages/pagamento/pagamento';
 import { RelatoriosComponent } from './pages/relatorios/relatorios';
+import { HistoricoSangriaComponent } from './pages/historico-sangria/historico-sangria';
 
 export const routes: Routes = [
   // Rotas de autenticação (públicas)
@@ -35,6 +36,7 @@ export const routes: Routes = [
       { path: 'cadastro-cliente', component: CadastroClienteComponent },
       { path: 'pagamento/:id', component: PagamentoComponent },
       { path: 'relatorios', component: RelatoriosComponent },
+      { path: 'historico-sangria', component: HistoricoSangriaComponent },
       
       // Rota padrão dentro da área logada, redireciona para a tela de pedidos
       { path: '', redirectTo: 'pedidos', pathMatch: 'full' }
