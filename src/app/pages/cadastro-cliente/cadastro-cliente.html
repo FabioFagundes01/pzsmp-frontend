@@ -1,11 +1,14 @@
-<!-- Seção da Lista (visível por padrão) -->
 <div *ngIf="modo === 'lista'">
   <div class="page-header">
-    <h1>Clientes</h1>
-    <p>Consulte, edite ou adicione novos clientes ao sistema.</p>
-    <button class="btn btn-primario" (click)="irParaModoCadastro()">
-      + Cadastrar Novo Cliente
-    </button>
+    <div class="header-text">
+      <h1>Clientes</h1>
+      <p>Consulte, edite ou adicione novos clientes ao sistema.</p>
+    </div>
+    <div class="header-actions">
+      <button class="btn btn-primario" (click)="irParaModoCadastro()">
+        + Cadastrar Novo Cliente
+      </button>
+    </div>
   </div>
 
   <div class="card">
@@ -44,11 +47,12 @@
   </div>
 </div>
 
-<!-- Seção do Formulário (visível ao clicar no botão) -->
 <div *ngIf="modo === 'cadastro'">
   <div class="page-header">
-    <h1>Cadastrar Novo Cliente</h1>
-    <p>Preencha os dados abaixo para adicionar um novo cliente ao sistema.</p>
+    <div class="header-text">
+        <h1>Cadastrar Novo Cliente</h1>
+        <p>Preencha os dados abaixo para adicionar um novo cliente ao sistema.</p>
+    </div>
   </div>
 
   <div class="card">
@@ -100,7 +104,6 @@
   </div>
 </div>
 
-<!-- Modal de Edição -->
 <div class="modal-overlay" *ngIf="clienteEmEdicao">
   <div class="modal-content">
     <h2>Editar Cliente</h2>

@@ -1,62 +1,70 @@
-<!-- Seção da Lista (visível por padrão) -->
-<div class="list-section" *ngIf="modo === 'lista'">
-  <div class="list-header">
-    <h2>Funcionários Cadastrados</h2>
-    <button class="btn-novo" (click)="irParaModoCadastro()">
-      + Cadastrar Novo Funcionário
-    </button>
-  </div>
-  <table>
-    <thead>
-      <tr>
-        <th>ID</th>
-        <th>Nome</th>
-        <th>Cargo</th>
-        <th>Telefone</th>
-        <th>Login</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let funcionario of listaFuncionarios">
-        <td>{{ funcionario.id }}</td>
-        <td>{{ funcionario.nome }}</td>
-        <td>{{ funcionario.cargo }}</td>
-        <td>{{ funcionario.telefone }}</td>
-        <td>{{ funcionario.login }}</td>
-      </tr>
-    </tbody>
-  </table>
-</div>
+<div class="gerenciar-funcionarios">
 
-<!-- Seção do Formulário (visível ao clicar no botão) -->
-<div class="form-section" *ngIf="modo === 'cadastro'">
-  <h2>Cadastrar Novo Funcionário</h2>
-  <form (ngSubmit)="cadastrarFuncionario()">
-    <div class="form-grid">
-      <div class="form-group">
-        <label for="nome">Nome Completo</label>
-        <input id="nome" type="text" [(ngModel)]="novoFuncionario.nome" name="nome" required>
-      </div>
-      <div class="form-group">
-        <label for="telefone">Telefone</label>
-        <input id="telefone" type="text" [(ngModel)]="novoFuncionario.telefone" name="telefone">
-      </div>
-      <div class="form-group">
-        <label for="cargo">Cargo</label>
-        <input id="cargo" type="text" [(ngModel)]="novoFuncionario.cargo" name="cargo" required>
-      </div>
-      <div class="form-group">
-        <label for="login">Login de Acesso</label>
-        <input id="login" type="text" [(ngModel)]="novoFuncionario.login" name="login" required>
-      </div>
-      <div class="form-group">
-        <label for="senha">Senha</label>
-        <input id="senha" type="password" [(ngModel)]="novoFuncionario.senha" name="senha" required>
-      </div>
+  <div class="page-header">
+    <div class="header-text">
+      <h1>Funcionários</h1>
+      <p>Gerencie os funcionários e seus acessos ao sistema.</p>
     </div>
-    <div class="form-actions">
-      <button type="button" class="btn-cancelar" (click)="voltarParaLista()">Cancelar</button>
-      <button type="submit" class="submit-btn">Salvar Funcionário</button>
+    <div class="header-actions" *ngIf="modo === 'lista'">
+      <button class="btn btn-primario" (click)="irParaModoCadastro()">
+        + Cadastrar Novo Funcionário
+      </button>
     </div>
-  </form>
+  </div>
+
+  <div class="content-card" *ngIf="modo === 'lista'">
+    <table>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Nome</th>
+          <th>Cargo</th>
+          <th>Telefone</th>
+          <th>Login</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let funcionario of listaFuncionarios">
+          <td>{{ funcionario.id }}</td>
+          <td>{{ funcionario.nome }}</td>
+          <td>{{ funcionario.cargo }}</td>
+          <td>{{ funcionario.telefone }}</td>
+          <td>{{ funcionario.login }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="content-card" *ngIf="modo === 'cadastro'">
+    <h2>Cadastrar Novo Funcionário</h2>
+    <form (ngSubmit)="cadastrarFuncionario()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label for="nome">Nome Completo</label>
+          <input id="nome" type="text" [(ngModel)]="novoFuncionario.nome" name="nome" required>
+        </div>
+        <div class="form-group">
+          <label for="telefone">Telefone</label>
+          <input id="telefone" type="text" [(ngModel)]="novoFuncionario.telefone" name="telefone">
+        </div>
+        <div class="form-group">
+          <label for="cargo">Cargo</label>
+          <input id="cargo" type="text" [(ngModel)]="novoFuncionario.cargo" name="cargo" required>
+        </div>
+        <div class="form-group">
+          <label for="login">Login de Acesso</label>
+          <input id="login" type="text" [(ngModel)]="novoFuncionario.login" name="login" required>
+        </div>
+        <div class="form-group">
+          <label for="senha">Senha</label>
+          <input id="senha" type="password" [(ngModel)]="novoFuncionario.senha" name="senha" required>
+        </div>
+      </div>
+      <div class="form-actions">
+        <button type="button" class="btn-cancelar" (click)="voltarParaLista()">Cancelar</button>
+        <button type="submit" class="btn-salvar">Salvar Funcionário</button>
+      </div>
+    </form>
+  </div>
+
 </div>

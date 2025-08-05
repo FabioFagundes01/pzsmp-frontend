@@ -1,12 +1,36 @@
-.mesas-container h1 {
-  margin-bottom: 10px;
-}
-.mesas-container p {
-  margin-top: 0;
-  color: #666;
-  margin-bottom: 30px;
+/* =================================================================== */
+/* CSS COMPLETO E CONSOLIDADO - PÁGINA MESAS                         */
+/* =================================================================== */
+
+
+/* Estilos para o Cabeçalho da Página
+------------------------------------------------------------------- */
+.page-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 40px;
+  padding-bottom: 25px;
+  border-bottom: 1px solid var(--cor-borda, #e2e8f0);
 }
 
+.header-text h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--cor-texto-principal, #1a202c);
+  margin: 0 0 8px 0;
+}
+
+.header-text p {
+  font-size: 1rem;
+  color: var(--cor-texto-secundario, #718096);
+  margin: 0;
+}
+
+
+
+/* Estilos para a Grade de Mesas
+------------------------------------------------------------------- */
 .mesas-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
@@ -64,6 +88,8 @@
   color: #856404;
 }
 
+/* Estilos para o Modal
+------------------------------------------------------------------- */
 .modal-overlay {
   position: fixed;
   top: 0;
@@ -77,14 +103,17 @@
   z-index: 1000;
 }
 
-.modal-content {
+.modal-content-large {
   position: relative;
   background-color: white;
   padding: 30px;
   border-radius: 8px;
   width: 90%;
-  max-width: 500px;
+  max-width: 900px;
+  min-height: 500px;
   box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+  display: flex;
+  flex-direction: column;
 }
 
 .btn-fechar {
@@ -98,56 +127,9 @@
   color: #888;
 }
 
-.modal-content h2 {
+.modal-content-large h2 {
   margin-top: 0;
   margin-bottom: 25px;
-}
-
-.pedido-item {
-  padding: 10px;
-  border-bottom: 1px solid #eee;
-}
-
-.form-group {
-  margin-bottom: 20px;
-}
-
-.form-group label {
-  display: block;
-  margin-bottom: 5px;
-  font-weight: bold;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  box-sizing: border-box;
-}
-
-.btn-salvar {
-  width: 100%;
-  padding: 12px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-}
-
-.modal-content-large {
-  position: relative;
-  background-color: white;
-  padding: 30px;
-  border-radius: 8px;
-  width: 90%;
-  max-width: 900px; /* Aumenta a largura máxima */
-  min-height: 500px;
-  box-shadow: 0 5px 15px rgba(0,0,0,0.3);
-  display: flex;
-  flex-direction: column;
 }
 
 .modal-nav {
@@ -190,38 +172,23 @@
   overflow-y: auto;
 }
 
-.item-cardapio {
-  padding: 10px;
-  cursor: pointer;
-  border-radius: 4px;
+/* Demais estilos para formulários, listas, etc. dentro do modal */
+.form-group {
+  margin-bottom: 20px;
 }
-.item-cardapio:hover {
-  background-color: #f0f0f0;
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
 }
-
-.item-pedido-atual {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-}
-
-.total-pedido {
-  text-align: right;
-  font-size: 1.2rem;
-  margin-top: 15px;
-}
-
-.btn-finalizar-pedido {
+.form-group input, .form-group textarea {
   width: 100%;
-  padding: 12px;
-  background-color: #28a745;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  font-size: 16px;
-  cursor: pointer;
-  margin-top: 20px;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
 }
+
 .filtros-cardapio {
   display: flex;
   flex-wrap: wrap;
@@ -244,8 +211,36 @@
   max-height: 300px;
   overflow-y: auto;
 }
+.item-cardapio {
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+.item-cardapio:hover {
+  background-color: #f0f0f0;
+}
+.item-pedido-atual {
+  display: flex;
+  justify-content: space-between;
+  padding: 8px 0;
+}
+.total-pedido {
+  text-align: right;
+  font-size: 1.2rem;
+  margin-top: 15px;
+}
+.btn-finalizar-pedido, .btn-salvar {
+  width: 100%;
+  padding: 12px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 20px;
+}
 
-/* Estilos para a lista detalhada de pedidos */
 .pedido-detalhado {
   border: 1px solid #eee;
   padding: 15px;

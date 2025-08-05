@@ -48,6 +48,10 @@ export class PedidoService {
     return this.http.post<Pedido>(`${this.apiUrl}/${pedidoId}/itens`, requestBody);
   }
 
+  getRelatorios(): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/relatorios`);
+}
+
   /**
    * Envia uma requisição para fechar um pedido de mesa.
    */

@@ -1,0 +1,27 @@
+<div class="page-header">
+  <div class="header-text">
+    <h1>Relatório de Fechamento de Caixa</h1>
+    <p>Histórico de valores totais arrecadados por dia.</p>
+  </div>
+
+</div>
+
+<div class="card">
+  <table>
+    <thead>
+      <tr>
+        <th>Data do Fechamento</th>
+        <th>Valor Total Arrecadado</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let relatorio of relatorios">
+        <td>{{ relatorio.data | date:'dd/MM/yyyy' }}</td>
+        <td>{{ relatorio.valorTotal | currency:'BRL' }}</td>
+      </tr>
+      <tr *ngIf="relatorios.length === 0">
+        <td colspan="2" class="text-center">Nenhum relatório encontrado.</td>
+      </tr>
+    </tbody>
+  </table>
+</div>

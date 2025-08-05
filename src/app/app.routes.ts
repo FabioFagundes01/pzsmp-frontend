@@ -10,6 +10,7 @@ import { Balcao } from './pages/balcao/balcao';
 import { CadastroProdutoComponent } from './pages/cadastro-produto/cadastro-produto';
 import { CadastroClienteComponent } from './pages/cadastro-cliente/cadastro-cliente';
 import { PagamentoComponent } from './pages/pagamento/pagamento';
+import { RelatoriosComponent } from './pages/relatorios/relatorios';
 
 export const routes: Routes = [
   // Rotas de autenticação (públicas)
@@ -33,6 +34,7 @@ export const routes: Routes = [
       { path: 'cadastro-produto', component: CadastroProdutoComponent },
       { path: 'cadastro-cliente', component: CadastroClienteComponent },
       { path: 'pagamento/:id', component: PagamentoComponent },
+      { path: 'relatorios', component: RelatoriosComponent },
       
       // Rota padrão dentro da área logada, redireciona para a tela de pedidos
       { path: '', redirectTo: 'pedidos', pathMatch: 'full' }

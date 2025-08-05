@@ -1,6 +1,10 @@
 <div class="page-header">
-  <h1>Pedido de Balcão</h1>
-  <p>Registre um novo pedido para retirada no restaurante.</p>
+  <div class="header-text">
+    <h1>Pedido de Balcão</h1>
+    <p>Registre um novo pedido para retirada no restaurante.</p>
+  </div>
+  <div class="header-actions">
+    </div>
 </div>
 
 <div class="novo-pedido-view">
@@ -28,7 +32,7 @@
       <input id="nomeCliente" type="text" [(ngModel)]="nomeCliente" name="nomeCliente" required>
     </div>
     
-    <div *ngIf="novoPedidoItens.length > 0; else pedidoVazio">
+    <div class="itens-container" *ngIf="novoPedidoItens.length > 0; else pedidoVazio">
       <div *ngFor="let item of novoPedidoItens" class="item-pedido-atual">
         <span>{{ item.quantidade }}x {{ item.produto.nome }}</span>
         <span>R$ {{ (item.produto.preco * item.quantidade).toFixed(2) }}</span>
@@ -38,7 +42,10 @@
         <strong>Total: R$ {{ totalNovoPedido.toFixed(2) }}</strong>
       </div>
     </div>
-    <ng-template #pedidoVazio><p>Clique nos itens do cardápio para adicionar.</p></ng-template>
-    <button class="btn btn-primario btn-finalizar-pedido" (click)="finalizarPedido()">Finalizar Pedido</button>
+    <ng-template #pedidoVazio>
+      <p class="pedido-vazio-mensagem">Clique nos itens do cardápio para adicionar.</p>
+    </ng-template>
+
+    <button class="btn-finalizar-pedido" (click)="finalizarPedido()">Finalizar Pedido</button>
   </div>
 </div>

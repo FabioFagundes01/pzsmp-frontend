@@ -1,6 +1,11 @@
 <div class="mesas-container">
-  <h1>Gerenciamento de Mesas</h1>
-  <p>Clique em uma mesa para ver detalhes, fazer um pedido ou uma reserva.</p>
+  <div class="page-header">
+    <div class="header-text">
+      <h1>Gerenciamento de Mesas</h1>
+      <p>Clique em uma mesa para ver detalhes, fazer um pedido ou uma reserva.</p>
+    </div>
+  
+  </div>
 
   <div class="mesas-grid">
     <div *ngFor="let mesa of listaMesas" class="mesa-card" (click)="abrirModal(mesa)"
@@ -12,24 +17,18 @@
   </div>
 </div>
 
-<!-- ================================================== -->
-<!-- MODAL DINÂMICO -->
-<!-- ================================================== -->
 <div class="modal-overlay" *ngIf="mesaSelecionada">
   <div class="modal-content-large">
     <button class="btn-fechar" (click)="fecharModal()">X</button>
     <h2>Mesa {{ mesaSelecionada.numero }}</h2>
 
-    <!-- NAVEGAÇÃO INTERNA DO MODAL -->
     <div class="modal-nav">
       <button (click)="modalView = 'novoPedido'" [class.active]="modalView === 'novoPedido'">Novo Pedido / Adicionar Itens</button>
       <button (click)="modalView = 'pedidos'" [class.active]="modalView === 'pedidos'">Ver Pedidos Ativos</button>
       <button (click)="modalView = 'reserva'" [class.active]="modalView === 'reserva'">Reservar</button>
     </div>
 
-    <!-- CONTEÚDO DINÂMICO -->
     <div class="modal-body">
-      <!-- View: NOVO PEDIDO / ADICIONAR ITENS -->
       <div *ngIf="modalView === 'novoPedido'" class="novo-pedido-view">
         <div class="cardapio-coluna">
           <h4>Cardápio</h4>
@@ -64,7 +63,6 @@
         </div>
       </div>
 
-      <!-- View: VER PEDIDOS ATIVOS -->
       <div *ngIf="modalView === 'pedidos'">
         <div *ngIf="pedidosDaMesa.length > 0; else semPedidos">
           <div *ngFor="let pedido of pedidosDaMesa" class="pedido-detalhado">
@@ -81,7 +79,6 @@
         <ng-template #semPedidos><p>Não há pedidos ativos para esta mesa.</p></ng-template>
       </div>
 
-      <!-- View: RESERVA -->
       <div *ngIf="modalView === 'reserva'">
         <form (ngSubmit)="reservarMesa()">
           <div class="form-group">
