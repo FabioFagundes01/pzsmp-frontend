@@ -157,20 +157,3 @@
   background-color: #f1f5f9;
   color: #1a202c;
 }
-
-.btn-sangria {
-  width: 100%;
-  padding: 12px;
-  border: none;
-  background-color: var(--cor-aviso, #ffc107);
-  color: #333;
-  border-radius: 8px;
-  font-weight: 600;
-  font-size: 1rem;
-  cursor: pointer;
-  transition: all 0.2s;
-  margin-bottom: 10px; /* Espaço entre os botões */
-}
-.btn-sangria:hover {
-  background-color: #e0a800;
-}

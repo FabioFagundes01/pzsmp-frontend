@@ -48,3 +48,14 @@ tbody tr:last-child td {
   padding: 40px 0;
   color: #a0aec0;
 }
+
+.btn-primario {
+  background-color: rgb(50, 50, 50);
+  color: white;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 8px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+}

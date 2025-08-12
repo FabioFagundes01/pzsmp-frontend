@@ -208,3 +208,42 @@
   cursor: pointer; 
   margin-top: 20px; 
 }
+
+/* Estilos para a lista de itens do pedido atual */
+.item-pedido-atual {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Alinha o texto e o botão verticalmente */
+  padding: 10px 0;
+  border-bottom: 1px solid var(--cor-borda, #e2e8f0);
+}
+
+.item-pedido-atual .item-info {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1; /* Faz esta div ocupar o máximo de espaço */
+}
+
+
+/* Estilo para o botão de remover item */
+.btn-remover-item {
+  background: none;
+  border: none;
+  color: var(--cor-texto-secundario, #a0aec0);
+  cursor: pointer;
+  font-size: 0.9rem;
+  padding: 5px 10px;
+  margin-left: 15px; /* Espaço entre o preço e o botão */
+  border-radius: 50%;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s;
+}
+
+.btn-remover-item:hover {
+  background-color: #f8d7da; /* Fundo vermelho claro */
+  color: var(--cor-erro, #dc3545); /* Ícone vermelho */
+}

@@ -3,6 +3,11 @@
     <h1>Histórico de Sangrias</h1>
     <p>Visualize todas as retiradas de dinheiro registradas no caixa.</p>
   </div>
+  <div class="header-actions">
+    <button *ngIf="cargoUsuario === 'ADMIN'" class="btn-primario" (click)="abrirModalSangria()">
+      + Realizar Sangria
+    </button>
+  </div>
 </div>
 
 <div class="card">
@@ -28,3 +33,5 @@
     </tbody>
   </table>
 </div>
+
+<app-sangria-modal *ngIf="mostrarModalSangria" (close)="fecharModalSangria()"></app-sangria-modal>

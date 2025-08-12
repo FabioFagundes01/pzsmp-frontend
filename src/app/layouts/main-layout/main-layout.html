@@ -21,13 +21,10 @@
       <a routerLink="/app/cadastro-cliente" routerLinkActive="active"><i class="fas fa-user-plus"></i>Clientes</a>
       <a routerLink="/app/relatorios" routerLinkActive="active"><i class="fas fa-chart-bar"></i> Relatórios</a>
       <a routerLink="/app/historico-sangria" routerLinkActive="active" *ngIf="cargoUsuario === 'ADMIN'">
-      <i class="fas fa-box-open"></i> Histórico de Sangrias</a>
+      <i class="fas fa-box-open"></i>Sangrias</a>
     </nav>
     <div class="sidebar-bottom">
       <div class="sidebar-actions">
-        <button *ngIf="cargoUsuario === 'ADMIN'" class="btn-sangria" (click)="abrirModalSangria()">
-    Realizar Sangria
-  </button>
         <button class="btn-fechar-caixa" (click)="fecharCaixa()">Fechar Caixa</button>
       </div>
       
@@ -52,5 +49,3 @@
     <router-outlet></router-outlet>
   </main>
 </div>
-
-<app-sangria-modal *ngIf="mostrarModalSangria" (close)="fecharModalSangria()"></app-sangria-modal>

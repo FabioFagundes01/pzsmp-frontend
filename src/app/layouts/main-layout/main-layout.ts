@@ -9,7 +9,7 @@ import { SangriaModalComponent } from '../../shared/components/sangria-modal/san
   selector: 'app-main-layout',
   standalone: true,
   // Adicione CommonModule e SangriaModalComponent aos imports
-  imports: [RouterModule, CommonModule, SangriaModalComponent], 
+  imports: [RouterModule, CommonModule], 
   templateUrl: './main-layout.html',
   styleUrls: ['./main-layout.css']
 })
@@ -19,8 +19,6 @@ export class MainLayoutComponent implements OnInit {
   nomeUsuarioLogado: string | null = null;
   cargoUsuario: string | null = null;
 
-  // Propriedade para controlar a visibilidade do modal
-  mostrarModalSangria = false;
 
   constructor(
     private authService: AuthService, 
@@ -65,21 +63,5 @@ export class MainLayoutComponent implements OnInit {
         }
       });
     }
-  }
-
-  // --- MÉTODOS PARA CONTROLAR O MODAL DE SANGRIA ---
-
-  /**
-   * Abre o modal de sangria.
-   */
-  abrirModalSangria(): void {
-    this.mostrarModalSangria = true;
-  }
-
-  /**
-   * Fecha o modal de sangria (chamado pelo evento 'close' do componente filho).
-   */
-  fecharModalSangria(): void {
-    this.mostrarModalSangria = false;
   }
 }

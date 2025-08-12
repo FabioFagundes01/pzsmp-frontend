@@ -4,7 +4,6 @@
       <h1>Gerenciamento de Mesas</h1>
       <p>Clique em uma mesa para ver detalhes, fazer um pedido ou uma reserva.</p>
     </div>
-  
   </div>
 
   <div class="mesas-grid">
@@ -47,9 +46,15 @@
         <div class="pedido-coluna">
           <h4>Itens a Adicionar</h4>
           <div *ngIf="novoPedidoItens.length > 0; else pedidoVazio">
+
             <div *ngFor="let item of novoPedidoItens" class="item-pedido-atual">
-              <span>{{ item.quantidade }}x {{ item.produto.nome }}</span>
-              <span>R$ {{ (item.produto.preco * item.quantidade).toFixed(2) }}</span>
+              <div class="item-info">
+                <span>{{ item.quantidade }}x {{ item.produto.nome }}</span>
+                <span>R$ {{ (item.produto.preco * item.quantidade).toFixed(2) }}</span>
+              </div>
+              <button class="btn-remover-item" (click)="removerDoPedido(item)" title="Remover Item">
+                <i class="fas fa-trash-alt"></i>
+              </button>
             </div>
             <hr>
             <div class="total-pedido">
@@ -64,38 +69,9 @@
       </div>
 
       <div *ngIf="modalView === 'pedidos'">
-        <div *ngIf="pedidosDaMesa.length > 0; else semPedidos">
-          <div *ngFor="let pedido of pedidosDaMesa" class="pedido-detalhado">
-            <h4>Pedido #{{ pedido.idPedido }} ({{ pedido.status }})</h4>
-            <ul>
-              <li *ngFor="let item of pedido.itens">
-                <span>{{ item.quantidade }}x {{ item.nomeProduto }}</span>
-                <span>R$ {{ item.precoUnitario.toFixed(2) }}</span>
-              </li>
-            </ul>
-            <strong class="total-geral-pedido">Total do Pedido: R$ {{ pedido.total.toFixed(2) }}</strong>
-          </div>
         </div>
-        <ng-template #semPedidos><p>Não há pedidos ativos para esta mesa.</p></ng-template>
-      </div>
-
       <div *ngIf="modalView === 'reserva'">
-        <form (ngSubmit)="reservarMesa()">
-          <div class="form-group">
-            <label for="nomeReserva">Nome para a Reserva</label>
-            <input id="nomeReserva" type="text" [(ngModel)]="novaReserva.nomeReserva" name="nomeReserva" required>
-          </div>
-          <div class="form-group">
-            <label for="numPessoas">Número de Pessoas</label>
-            <input id="numPessoas" type="number" [(ngModel)]="novaReserva.numPessoas" name="numPessoas" required>
-          </div>
-          <div class="form-group">
-            <label for="observacoes">Observações (opcional)</label>
-            <textarea id="observacoes" [(ngModel)]="novaReserva.observacoes" name="observacoes" rows="3"></textarea>
-          </div>
-          <button type="submit" class="btn-salvar">Confirmar Reserva</button>
-        </form>
-      </div>
+        </div>
     </div>
   </div>
 </div>

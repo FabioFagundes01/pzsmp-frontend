@@ -21,6 +21,7 @@
           <th>Cargo</th>
           <th>Telefone</th>
           <th>Login</th>
+          <th>Ações</th>
         </tr>
       </thead>
       <tbody>
@@ -30,10 +31,44 @@
           <td>{{ funcionario.cargo }}</td>
           <td>{{ funcionario.telefone }}</td>
           <td>{{ funcionario.login }}</td>
+          <td class="acoes-cell">
+        <button class="btn-acao btn-aviso" (click)="abrirModalEdicao(funcionario)">Editar</button>
+        <button class="btn-acao btn-erro" (click)="excluir(funcionario.id)">Excluir</button>
+      </td>
         </tr>
       </tbody>
     </table>
   </div>
+
+  <div class="modal-overlay" *ngIf="funcionarioEmEdicao">
+  <div class="modal-content">
+    <h2>Editar Funcionário</h2>
+    <form (ngSubmit)="salvarEdicao()">
+      <div class="form-grid">
+        <div class="form-group">
+          <label>Nome Completo</label>
+          <input type="text" [(ngModel)]="funcionarioEmEdicao.nome" name="edit-nome" required>
+        </div>
+        <div class="form-group">
+          <label>Telefone</label>
+          <input type="text" [(ngModel)]="funcionarioEmEdicao.telefone" name="edit-telefone">
+        </div>
+        <div class="form-group">
+          <label>Cargo</label>
+          <input type="text" [(ngModel)]="funcionarioEmEdicao.cargo" name="edit-cargo" required>
+        </div>
+        <div class="form-group">
+          <label>Nova Senha (deixe em branco para não alterar)</label>
+          <input type="password" [(ngModel)]="funcionarioEmEdicao.senha" name="edit-senha">
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-secundario" (click)="fecharModalEdicao()">Cancelar</button>
+        <button type="submit" class="btn btn-primario">Salvar Alterações</button>
+      </div>
+    </form>
+  </div>
+</div>
 
   <div class="content-card" *ngIf="modo === 'cadastro'">
     <h2>Cadastrar Novo Funcionário</h2>

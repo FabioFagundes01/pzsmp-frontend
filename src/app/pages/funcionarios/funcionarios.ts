@@ -25,6 +25,8 @@ export class Funcionarios implements OnInit {
     senha: ''
   };
 
+  funcionarioEmEdicao: any | null = null;
+
   constructor(private funcionarioService: FuncionarioService) { }
 
   ngOnInit(): void {
@@ -61,5 +63,48 @@ export class Funcionarios implements OnInit {
     // Limpa o formulário antes de voltar
     this.novoFuncionario = { nome: '', telefone: '', cargo: '', login: '', senha: '' };
     this.modo = 'lista';
+  }
+
+  abrirModalEdicao(funcionario: any): void {
+    // Cria uma cópia do funcionário para edição para não alterar a lista diretamente
+    this.funcionarioEmEdicao = { ...funcionario };
+    // A senha não vem do backend, então deixamos em branco para o admin digitar uma nova se quiser
+    this.funcionarioEmEdicao.senha = ''; 
+  }
+
+  fecharModalEdicao(): void {
+    this.funcionarioEmEdicao = null;
+  }
+
+  salvarEdicao(): void {
+    if (!this.funcionarioEmEdicao) return;
+
+    this.funcionarioService.atualizarFuncionario(this.funcionarioEmEdicao.id, this.funcionarioEmEdicao).subscribe({
+      next: () => {
+        alert('Funcionário atualizado com sucesso!');
+        this.carregarFuncionarios();
+        this.fecharModalEdicao();
+      },
+      error: (err) => {
+        alert('Erro ao atualizar funcionário.');
+        console.error(err);
+      }
+    });
+  }
+
+  // <<< NOVO MÉTODO PARA EXCLUSÃO >>>
+  excluir(id: number): void {
+    if (confirm('Tem certeza que deseja excluir este funcionário?')) {
+      this.funcionarioService.excluirFuncionario(id).subscribe({
+        next: () => {
+          alert('Funcionário excluído com sucesso.');
+          this.carregarFuncionarios();
+        },
+        error: (err) => {
+          alert('Erro ao excluir funcionário.');
+          console.error(err);
+        }
+      });
+    }
   }
 }
