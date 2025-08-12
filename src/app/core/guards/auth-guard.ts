@@ -9,9 +9,10 @@ export const authGuard: CanActivateFn = (route, state) => {
   // Se existir um token, o usuário pode acessar a rota
   if (authService.getToken()) {
     return true;
+  }else {
+    // Se NÃO estiver autenticado, redireciona para a página de login.
+    console.error('AuthGuard: Acesso negado. Redirecionando para /login');
+    router.navigate(['/auth/login']);
+    return false; // Bloqueia o acesso à rota atual.
   }
-
-  // Se não existir, redireciona para a página de login
-  router.navigate(['/auth/login']);
-  return false;
 };

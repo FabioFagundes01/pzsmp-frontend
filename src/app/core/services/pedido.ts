@@ -59,6 +59,11 @@ export class PedidoService {
     return this.http.put<Pedido>(`${this.apiUrl}/${pedidoId}/fechar`, {});
   }
 
+  getPedidosPorData(data: string): Observable<any[]> {
+    // Usamos a URL do RelatorioController que criamos no backend
+    return this.http.get<any[]>(`${this.apiUrl}/data/${data}`);
+  }
+
   /**
    * Envia uma requisição para fechar o caixa (excluir todos os pedidos).
    */

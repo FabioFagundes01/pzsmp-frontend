@@ -29,7 +29,9 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let relatorio of relatorios">
+      <tr *ngFor="let relatorio of relatorios" 
+        [routerLink]="['/app/relatorios', relatorio.data]" 
+        class="linha-clicavel">
         <td>{{ relatorio.data | date:'dd/MM/yyyy' }}</td>
         <td>{{ relatorio.valorTotal | currency:'BRL' }}</td>
       </tr>

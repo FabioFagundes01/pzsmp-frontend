@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router'; // <<< 1. IMPORTE AQUI
+import { RouterModule } from '@angular/router'; 
 import { PedidoService } from '../../core/services/pedido';
 import { Pedido } from '../../core/models/pedido.model';
 
@@ -9,7 +9,7 @@ import { Pedido } from '../../core/models/pedido.model';
   standalone: true,
   imports: [
     CommonModule,
-    RouterModule // <<< 2. ADICIONE AQUI
+    RouterModule 
   ],
   templateUrl: './pedidos.html',
   styleUrls: ['./pedidos.css']

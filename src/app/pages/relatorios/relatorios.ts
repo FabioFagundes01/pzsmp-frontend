@@ -1,20 +1,22 @@
-// src/app/pages/relatorios/relatorios.component.ts
 import { Component, OnInit } from '@angular/core';
 import { CommonModule, formatDate } from '@angular/common';
-import { FormsModule } from '@angular/forms'; // <<< IMPORTE O FormsModule
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router'; // <<< 1. IMPORTE O RouterModule AQUI
 import { RelatorioService } from '../../core/services/relatorios'; // Ajuste o caminho se necessário
 
 @Component({
   selector: 'app-relatorios',
   standalone: true,
-  imports: [CommonModule, FormsModule], // <<< ADICIONE O FormsModule
+  imports: [
+    CommonModule,
+    FormsModule,
+    RouterModule 
+  ],
   templateUrl: './relatorios.html',
   styleUrls: ['./relatorios.css']
 })
 export class RelatoriosComponent implements OnInit {
   relatorios: any[] = [];
-  
-  // Propriedades para os filtros de data
   dataInicio: string = '';
   dataFim: string = '';
 
@@ -29,7 +31,6 @@ export class RelatoriosComponent implements OnInit {
     const seteDiasAtras = new Date();
     seteDiasAtras.setDate(hoje.getDate() - 7);
 
-    // Formata as datas para o formato YYYY-MM-DD que o input[type=date] e a API esperam
     this.dataFim = formatDate(hoje, 'yyyy-MM-dd', 'en-US');
     this.dataInicio = formatDate(seteDiasAtras, 'yyyy-MM-dd', 'en-US');
 

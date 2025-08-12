@@ -150,3 +150,10 @@ tbody tr:hover {
 .btn-limpar:hover {
   background-color: #cbd5e0;
 }
+
+tbody tr.linha-clicavel {
+  cursor: pointer;
+}
+tbody tr.linha-clicavel:hover {
+  background-color: #f0f4f8;
+}
