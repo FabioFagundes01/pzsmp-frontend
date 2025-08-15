@@ -18,6 +18,8 @@ export class MainLayoutComponent implements OnInit {
   // Propriedades para dados do usuário
   nomeUsuarioLogado: string | null = null;
   cargoUsuario: string | null = null;
+  dataAtual: Date = new Date();
+  private intervalId: any;
 
 
   constructor(
@@ -33,6 +35,15 @@ export class MainLayoutComponent implements OnInit {
   ngOnInit(): void {
     this.nomeUsuarioLogado = this.authService.getNomeUsuarioLogado();
     this.cargoUsuario = this.authService.getCargoUsuarioLogado();
+    this.intervalId = setInterval(() => {
+      this.dataAtual = new Date();
+    }, 1000);
+  }
+
+  ngOnDestroy(): void {
+    if (this.intervalId) {
+      clearInterval(this.intervalId);
+    }
   }
 
   /**

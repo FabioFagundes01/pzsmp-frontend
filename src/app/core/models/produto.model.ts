@@ -1,7 +1,8 @@
 export interface Produto {
   id_produto: number;
   nome: string;
-  tipo: string;
   preco: number;
+  tipo: string;
   imagemUrl?: string;
+  
 }

@@ -7,7 +7,7 @@
 }
 .content-area {
   flex-grow: 1;
-  padding: 40px;
+  padding: 0px 40px 40px 40px;
   overflow-y: auto;
   background-color: var(--cor-fundo-app, #f8fafc);
 }
@@ -157,3 +157,96 @@
   background-color: #f1f5f9;
   color: #1a202c;
 }
+
+/* ============================================== */
+/* CABEÇALHO DA ÁREA DE CONTEÚDO PRINCIPAL        */
+/* ============================================== */
+
+
+
+/* O user-profile agora está no cabeçalho, então ajustamos seu estilo */
+.user-profile {
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  padding: 0px 5px;
+  border-radius: 8px;
+  border: 1px solid var(--cor-borda, #e2e8f0);
+  box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+  margin-left: auto;
+  margin-top: auto;
+}
+
+.user-info {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 600;
+  color: #333;
+}
+
+.user-info i {
+  font-size: 1.5rem; /* Ícone de usuário um pouco maior */
+  color: #718096;
+}
+
+.btn-logout {
+  color: #718096;
+  font-size: 1.1rem;
+  padding: 8px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.btn-logout:hover {
+  background-color: #f1f5f9;
+  color: #1a202c;
+}
+
+.content-header {
+  display: flex;
+ 
+  align-items: center; 
+  width: 100%;
+  margin-bottom: 10px;
+  border-bottom: 1px solid var(--cor-borda, #e2e8f0);
+}
+
+/* NOVO BLOCO PARA AGRUPAR DATA E HORA */
+.header-info-left {
+  display: flex;
+  align-items: left;
+  gap: 15px; /* Espaço entre a data e a hora */
+  
+}
+
+.header-datetime {
+  display: flex;
+  align-items: left; /* Alinha o texto na base */
+  gap: 10px;
+  padding-right: 15px;
+  /* Borda vertical para separar a data da hora */
+  border-right: 2px solid var(--cor-borda, #e2e8f0);
+  margin-right: auto;
+}
+
+.header-datetime .date {
+  font-size: 0.95rem; /* Um pouco maior */
+  font-weight: 500;
+  color: var(--cor-texto-secundario, #718096);
+  text-transform: capitalize;
+}
+
+.header-datetime .time {
+  font-size: 1.2rem; /* Tamanho mais sutil */
+  font-weight: 600;
+  color: var(--cor-texto-principal, #1a202c);
+  line-height: 1;
+}
+
+/* Remova o estilo antigo do .user-profile que estava no rodapé do sidebar */
+/* Procure e apague as regras antigas para .user-profile e seus filhos no seu CSS */

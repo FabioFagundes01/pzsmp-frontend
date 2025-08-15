@@ -283,3 +283,12 @@
   background-color: var(--cor-sucesso, #28a745);
   color: white;
 }
+
+/* No arquivo cardapio.component.css */
+
+.produto-descricao {
+  font-size: 0.9rem;
+  color: #718096; /* Cinza suave */
+  margin-top: 10px;
+  line-height: 1.4;
+}
